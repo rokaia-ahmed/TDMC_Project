@@ -1,0 +1,52 @@
+import 'package:flutter/material.dart';
+import 'package:pin_code_fields/pin_code_fields.dart';
+import 'package:tdmc_project/core/utils/app_radius.dart';
+
+import '../../../../core/utils/app_colors.dart';
+import '../../../../core/utils/app_size.dart';
+import '../../../../core/utils/styles.dart';
+import '../../../../core/validators/app_validators.dart';
+
+class OtpPinCode extends StatelessWidget {
+  const OtpPinCode({super.key, required this.controller});
+  final TextEditingController controller ;
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: AppSize.padding(horizontal: 50),
+      child: PinCodeTextField(
+        length: 4,
+        appContext: context,
+        obscureText: false,
+        errorTextSpace: 13,
+        cursorColor: AppColors.primaryColor,
+        textStyle: Styles.textStyle20w500,
+        keyboardType: TextInputType.number,
+        enablePinAutofill: true,
+        scrollPadding: EdgeInsets.zero,
+        validator:(v)=>validate(v!) ,
+        animationDuration: const Duration(milliseconds: 300),
+        pinTheme: PinTheme(
+          fieldOuterPadding:EdgeInsets.zero,
+          shape: PinCodeFieldShape.box,
+          borderRadius: AppRadius.radius12,
+          activeBorderWidth: 1,
+          inactiveBorderWidth: 1,
+          selectedBorderWidth: 1,
+          errorBorderWidth: 1,
+          fieldHeight: AppSize.getVerticalSize(52),
+          fieldWidth: AppSize.getHorizontalSize(48),
+          errorBorderColor: Colors.red,
+          inactiveColor: AppColors.borderColor,
+          activeColor: AppColors.borderColor,
+          selectedColor: AppColors.primaryColor,
+          inactiveFillColor: Colors.white,
+          selectedFillColor: Colors.white,
+          activeFillColor: Colors.transparent,
+        ),
+        enableActiveFill: true,
+        controller: controller,
+      ),
+    );
+  }
+}
