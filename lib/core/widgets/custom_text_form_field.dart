@@ -27,7 +27,10 @@ class CustomTextField extends StatelessWidget {
     this.readOnly=false,
     this.fillColor,
     this.prefixIcon,
-    this.suffixIcon, this.codeWidget, this.suffixOnTap, this.suffix,
+    this.suffixIcon,
+    this.codeWidget,
+    this.suffixOnTap,
+    this.suffix, this.onChanged,
   });
 
   final TextInputType keyboardType;
@@ -53,6 +56,7 @@ class CustomTextField extends StatelessWidget {
   final bool readOnly;
   final bool obscureText;
   final Function()? onTap;
+  final Function(String)? onChanged;
   final Function()? suffixOnTap;
   final FormFieldValidator<String>? validator;
   final List<TextInputFormatter>? inputFormatters;
@@ -63,6 +67,7 @@ class CustomTextField extends StatelessWidget {
       height: AppSize.getVerticalSize(54),
       child: TextFormField(
         onTap: onTap,
+        onChanged:onChanged ,
         enabled: enabled,
         minLines: minLines,
         maxLines: maxLines,

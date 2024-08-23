@@ -21,7 +21,7 @@ class AppInterceptors extends Interceptor {
     final String? token = CacheHelper.getData('token');
 
     if (token != null) {
-      options.headers['Authorization'] = 'Token $token';
+      options.headers['Authorization'] = 'Bearer $token';
     }
 
     return handler.next(options);

@@ -16,6 +16,10 @@ abstract class Styles {
     fontSize: AppSize.fontSize(24),
     fontWeight: FontWeight.w600,
   );
+  static  TextStyle textStyle20w600 = TextStyle(
+    fontSize: AppSize.fontSize(20),
+    fontWeight: FontWeight.w600,
+  );
   static  TextStyle textStyle20w500 = TextStyle(
     fontSize: AppSize.fontSize(20),
     fontWeight: FontWeight.w500,
@@ -43,6 +47,11 @@ abstract class Styles {
   static  TextStyle textStyle16w700 = TextStyle(
     fontSize: AppSize.fontSize(16),
     fontWeight: FontWeight.w700,
+  );
+
+  static  TextStyle textStyle15w400 = TextStyle(
+    fontSize: AppSize.fontSize(15),
+    fontWeight: FontWeight.w400,
   );
 
   static  TextStyle textStyle14w400 = TextStyle(

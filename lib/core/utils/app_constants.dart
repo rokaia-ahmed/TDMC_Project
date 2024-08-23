@@ -5,10 +5,8 @@ import '../utils/app_radius.dart';
 class AppConstants {
   /// container
   static final Decoration boxDecoration = BoxDecoration(
+    color: Colors.white,
     borderRadius: AppRadius.radius10,
-    border: Border.all(
-      color: AppColors.borderColor,
-    ),
   );
 
   static OutlineInputBorder dialogShape = OutlineInputBorder(

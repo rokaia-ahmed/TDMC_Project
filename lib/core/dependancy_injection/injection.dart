@@ -1,18 +1,21 @@
 import 'package:get_it/get_it.dart';
 import 'package:tdmc_project/features/home/data/repos/home_repo.dart';
 import 'package:tdmc_project/features/home/logic/home_cubit.dart';
-
+import 'package:tdmc_project/features/layout/logic/layout_cubit.dart';
 import '../../features/Auth/data/repos/auth_repo.dart';
 import '../../features/Auth/logic/auth_cubit.dart';
 
 
- final GetIt getIt = GetIt.instance;
+final GetIt getIt = GetIt.instance;
 class GetItService{
 
  static Future setupGitIt()async{
       // auth
      getIt.registerLazySingleton<AuthRepo>(()=>AuthRepo());
      getIt.registerFactory<AuthCubit>(()=>AuthCubit(getIt()));
+
+     // layout
+     getIt.registerFactory<LayoutCubit>(()=>LayoutCubit());
 
      // home
      getIt.registerLazySingleton<HomeRepo>(()=>HomeRepo());

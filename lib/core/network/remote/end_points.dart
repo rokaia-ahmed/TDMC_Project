@@ -6,6 +6,8 @@ class ApiConstants{
   static const String otp = 'auth/verifycode';
   static const String resentOtp = 'auth/resendotp';
 
+  /// home
+  static const String workshops = 'workshop/employeeworkshops';
 }
 
 

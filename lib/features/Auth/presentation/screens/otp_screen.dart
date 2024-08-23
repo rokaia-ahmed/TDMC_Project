@@ -4,6 +4,7 @@ import 'package:tdmc_project/core/utils/app_colors.dart';
 import '../../../../core/dependancy_injection/injection.dart';
 import '../../../../core/utils/app_size.dart';
 import '../../../../core/utils/styles.dart';
+import '../../../../core/validators/app_validators.dart';
 import '../../../../core/widgets/custom_buttons.dart';
 import '../../logic/auth_cubit.dart';
 import '../widgets/otp_pin_code.dart';
@@ -15,7 +16,7 @@ class OtpScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => getIt<AuthCubit>(),
+      create: (context) => getIt<AuthCubit>()..downCount(),
       child: Scaffold(
         body: SafeArea(
           child: SingleChildScrollView(
@@ -31,7 +32,10 @@ class OtpScreen extends StatelessWidget {
                       children: [
                         const OtpTopWidgets(),
                         /// otp
-                        OtpPinCode(controller: cubit.otpController,),
+                        OtpPinCode(
+                          controller: cubit.otpController,
+                          validator: (v)=>validate(v!),
+                        ),
                         SizedBox(
                           height: AppSize.getVerticalSize(10),
                         ),
@@ -44,7 +48,8 @@ class OtpScreen extends StatelessWidget {
                             padding: AppSize.padding(start: 20),
                             child: Text('Resend code (00:${cubit.count})',
                               style: Styles.textStyle14w400.copyWith(
-                                color: AppColors.primaryColor,
+                                color:(cubit.count<30&&cubit.count>0)?AppColors.gryTextColor3
+                                    :AppColors.primaryColor,
                                 decoration: TextDecoration.underline,
                               ),
                             ),

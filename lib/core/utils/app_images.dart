@@ -14,6 +14,7 @@ static String defaultProfile = '$images/default_profile.png';
 class AppIcons {
   static String map = '$icons/map.svg';
   static String downArrow = '$icons/dwon_arrow.svg';
+  static String rightArrow = '$icons/arrow_right.svg';
   static String phone = '$icons/phone.svg';
   static String securityEye = '$icons/security_icon.svg';
   static String notification = '$icons/notification.svg';
@@ -21,6 +22,7 @@ class AppIcons {
   static String home = '$icons/home.svg';
   static String calender = '$icons/calander.svg';
   static String search = '$icons/Search.svg';
+  static String profile = '$icons/profile.svg';
 
 }
 

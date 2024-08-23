@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:tdmc_project/core/utils/app_radius.dart';
-
 import '../../../../core/utils/app_colors.dart';
 import '../../../../core/utils/app_size.dart';
 import '../../../../core/utils/styles.dart';
-import '../../../../core/validators/app_validators.dart';
 
 class OtpPinCode extends StatelessWidget {
-  const OtpPinCode({super.key, required this.controller});
+  const OtpPinCode({super.key, required this.controller, this.validator});
   final TextEditingController controller ;
+  final String? Function(String?)? validator ;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -24,7 +23,7 @@ class OtpPinCode extends StatelessWidget {
         keyboardType: TextInputType.number,
         enablePinAutofill: true,
         scrollPadding: EdgeInsets.zero,
-        validator:(v)=>validate(v!) ,
+        validator:validator ,
         animationDuration: const Duration(milliseconds: 300),
         pinTheme: PinTheme(
           fieldOuterPadding:EdgeInsets.zero,

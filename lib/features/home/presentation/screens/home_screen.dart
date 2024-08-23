@@ -11,23 +11,35 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: 3,
+      length: 4,
       child: Expanded(
         child: Padding(
-          padding: AppSize.padding(all: 10),
+          padding: AppSize.padding(horizontal: 15),
           child: Column(
             children: [
               /// search text field
               HomeSearchField(),
-              SizedBox(height: AppSize.getVerticalSize(25),),
+              SizedBox(
+                height: AppSize.getVerticalSize(20),
+              ),
+
               /// filter row
               HomeFilterRow(),
-              SizedBox(height: AppSize.getVerticalSize(20),),
+              SizedBox(
+                height: AppSize.getVerticalSize(20),
+              ),
+
               /// taps bar
               HomeTabsBar(),
-              SizedBox(height: AppSize.getVerticalSize(20),),
+              SizedBox(
+                height: AppSize.getVerticalSize(20),
+              ),
+
               /// taps bar view
-              HomeTabsView()
+              HomeTabsView(),
+              SizedBox(
+                height: AppSize.getVerticalSize(10),
+              ),
             ],
           ),
         ),

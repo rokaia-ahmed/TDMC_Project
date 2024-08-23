@@ -77,13 +77,14 @@ class AuthCubit extends Cubit<AuthState> {
         }, (r) {
           AppDialogs.toast(
               msg: 'verify code is successfully', state: ToastStates.success);
-          AppNavigator.push(screen: const LayoutScreen(), context: context);
+          AppNavigator.pushAndRemove(screen: const LayoutScreen(),
+              context: context);
           emit(Success());
         });
       });
     }
   }
-
+    /// count down
   int count = 30;
   void downCount() async {
     count = 30;

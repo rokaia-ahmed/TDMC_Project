@@ -12,10 +12,11 @@ class CustomDefaultButton extends StatelessWidget {
     required this.onTap,
     required this.text,
     this.width, this.height,
-     this.loading});
+     this.loading, this.textStyle});
 
   final Function() onTap ;
   final String text  ;
+  final TextStyle? textStyle  ;
   final double? width  ;
   final double? height  ;
   final bool? loading ;
@@ -32,7 +33,7 @@ class CustomDefaultButton extends StatelessWidget {
       child:loading==true?
           const CircularProgressIndicator():
       Text(text,
-        style: Styles.textStyle16w400.copyWith(
+        style:textStyle ?? Styles.textStyle16w400.copyWith(
           color: AppColors.white,
         ),
       ),
