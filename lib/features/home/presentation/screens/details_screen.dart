@@ -18,7 +18,7 @@ class DetailsScreen extends StatelessWidget {
     return Scaffold(
       body: SafeArea(
         child: Padding(
-          padding: AppSize.padding(horizontal: 10),
+          padding: AppSize.padding(horizontal: 10,top: 20),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
@@ -36,7 +36,7 @@ class DetailsScreen extends StatelessWidget {
                 ],
               ),
               SizedBox(
-                height: AppSize.getVerticalSize(40),
+                height: AppSize.getVerticalSize(30),
               ),
 
               /// title text

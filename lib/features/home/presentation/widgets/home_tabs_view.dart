@@ -24,14 +24,25 @@ class HomeTabsView extends StatelessWidget {
            child: TabBarView(
              physics: NeverScrollableScrollPhysics(),
              children: [
+               (cubit.workShopsModel!.enrolledWorkshops.isNotEmpty)?
                BuildListView(list: cubit.searchList.isNotEmpty? cubit.searchList:
-               cubit.workShopsModel!.enrolledWorkshops!,),
+               cubit.workShopsModel!.enrolledWorkshops,):
+               CustomError2(error: 'No workshops found'),
+
+               (cubit.workShopsModel!.completedWorkshops.isNotEmpty)?
                BuildListView(list:cubit.searchList.isNotEmpty? cubit.searchList:
-               cubit.workShopsModel!.completedWorkshops!,),
+               cubit.workShopsModel!.completedWorkshops,):
+               CustomError2(error: 'No workshops found'),
+
+               (cubit.workShopsModel!.upcomingWorkshops.isNotEmpty)?
                BuildListView(list:cubit.searchList.isNotEmpty?
-               cubit.searchList: cubit.workShopsModel!.upcomingWorkshops!,),
+               cubit.searchList: cubit.workShopsModel!.upcomingWorkshops,):
+               CustomError2(error: 'No workshops found'),
+
+               (cubit.workShopsModel!.invitedWorkshops.isNotEmpty)?
                BuildListView(list:cubit.searchList.isNotEmpty?
-               cubit.searchList: cubit.workShopsModel!.invitedWorkshops!,),
+               cubit.searchList: cubit.workShopsModel!.invitedWorkshops,):
+               CustomError2(error: 'No workshops found'),
              ],
            ),
          );

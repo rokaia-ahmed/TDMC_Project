@@ -13,8 +13,12 @@ class HomeRepo{
       Response response =  await DioHelper.getData(
           url:ApiConstants.workshops);
       if(response.statusCode==200){
-       var result = WorkShopsModel.fromJson(response.data);
-        return right(result);
+        if(response.data['success']==false){
+          return left(ServerFailure('No WorkShops found'));
+        }else{
+          var result = WorkShopsModel.fromJson(response.data);
+          return right(result);
+        }
       }else{
         return left(ServerFailure.fromResponse(response));
       }

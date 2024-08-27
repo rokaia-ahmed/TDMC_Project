@@ -22,7 +22,6 @@ class HomeCubit extends Cubit<HomeState> {
         emit(Error(l.message));
       }, (r) {
         workShopsModel = r;
-        print('${workShopsModel!.completedWorkshops?[0].link}');
         emit(Success());
       });
     });
@@ -46,19 +45,20 @@ class HomeCubit extends Cubit<HomeState> {
 
   /// search
   List<Result> searchList = [];
-  searchWorkshops(String text, String error){
+  searchWorkshops(String query, String error){
     searchList = [];
     bool isFound = false;
     if (workShopsModel != null) {
-      if(text.isEmpty){
+      if(query.isEmpty){
         onControllerEmpty();
         return ;
       }
+      final text = query.toLowerCase();
       if (tabBarIndex == 0) {
-        workShopsModel!.enrolledWorkshops!.forEach((e){
-          if((e.topicName?.contains(text)??false) ||
-              (e.companyName?.contains(text)??false) ||
-              (e.venueName?.contains(text)??false)
+        workShopsModel!.enrolledWorkshops.forEach((e){
+          if((e.topicName?.toLowerCase().contains(text)??false) ||
+              (e.companyName?.toLowerCase().contains(text)??false) ||
+              (e.venueName?.toLowerCase().contains(text)??false)
           ){
             searchList.add(e);
             isFound=true;
@@ -71,10 +71,10 @@ class HomeCubit extends Cubit<HomeState> {
         }
       }
       else if (tabBarIndex == 1) {
-        workShopsModel!.completedWorkshops!.forEach((item){
-          if ((item.venueName?.contains(text)??false) ||
-              (item.companyName?.contains(text)??false) ||
-              (item.topicName?.contains(text)??false)
+        workShopsModel!.completedWorkshops.forEach((item){
+          if ((item.venueName?.toLowerCase().contains(text)??false) ||
+              (item.companyName?.toLowerCase().contains(text)??false) ||
+              (item.topicName?.toLowerCase().contains(text)??false)
           ) {
              searchList.add(item);
              isFound = true ;
@@ -86,10 +86,10 @@ class HomeCubit extends Cubit<HomeState> {
           emit(SearchError('No search result'));
         }
       } if(tabBarIndex == 2) {
-        workShopsModel!.upcomingWorkshops!.forEach((e) {
-          if ((e.topicName?.contains(text)??false) ||
-              (e.companyName?.contains(text)??false) ||
-              (e.venueName?.contains(text)??false)
+        workShopsModel!.upcomingWorkshops.forEach((e) {
+          if ((e.topicName?.toLowerCase().contains(text)??false) ||
+              (e.companyName?.toLowerCase().contains(text)??false) ||
+              (e.venueName?.toLowerCase().contains(text)??false)
           ) {
             searchList.add(e);
             isFound=true;
@@ -101,10 +101,10 @@ class HomeCubit extends Cubit<HomeState> {
           emit(SearchError('No search result'));
         }
       }else {
-        workShopsModel!.invitedWorkshops!.forEach((e) {
-          if ((e.topicName?.contains(text)??false) ||
-              (e.companyName?.contains(text)??false) ||
-              (e.venueName?.contains(text)??false)
+        workShopsModel!.invitedWorkshops.forEach((e) {
+          if ((e.topicName?.toLowerCase().contains(text)??false) ||
+              (e.companyName?.toLowerCase().contains(text)??false) ||
+              (e.venueName?.toLowerCase().contains(text)??false)
           ) {
             searchList.add(e);
             isFound=true;

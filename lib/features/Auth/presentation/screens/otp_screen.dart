@@ -72,9 +72,7 @@ class OtpScreen extends StatelessWidget {
 
                         /// button
                         CustomDefaultButton(
-                          loading: (state is Loading )
-                              || (state is LoadingOtp)
-                              /*|| (state is CountdownStopped)*/,
+                          loading: (state is Loading ),
                           onTap: () {
                            cubit.otp(context, phone);
                           },

@@ -1,38 +1,38 @@
 class WorkShopsModel {
-  List<Result>? completedWorkshops;
-  List<Result>? upcomingWorkshops;
-  List<Result>? invitedWorkshops;
-  List<Result>? enrolledWorkshops;
+  List<Result> completedWorkshops=[];
+  List<Result> upcomingWorkshops=[];
+  List<Result> invitedWorkshops=[];
+  List<Result> enrolledWorkshops=[];
 
   WorkShopsModel(
-      {this.completedWorkshops,
-        this.upcomingWorkshops,
-        this.invitedWorkshops,
-        this.enrolledWorkshops});
+      {required this.completedWorkshops,
+        required this.upcomingWorkshops,
+        required this.invitedWorkshops,
+        required this.enrolledWorkshops});
 
   WorkShopsModel.fromJson(Map<String, dynamic> json) {
     if (json['completedWorkshops'] != null) {
        completedWorkshops =  [];
       json['completedWorkshops'].forEach((v) {
-        completedWorkshops!.add(Result.fromJson(v));
+        completedWorkshops.add(Result.fromJson(v));
       });
     }
     if (json['upcomingWorkshops'] != null) {
       upcomingWorkshops =  [];
       json['upcomingWorkshops'].forEach((v) {
-        upcomingWorkshops!.add( Result.fromJson(v));
+        upcomingWorkshops.add( Result.fromJson(v));
       });
     }
     if (json['invitedWorkshops'] != null) {
       invitedWorkshops =  [];
       json['invitedWorkshops'].forEach((v) {
-        invitedWorkshops!.add( Result.fromJson(v));
+        invitedWorkshops.add( Result.fromJson(v));
       });
     }
     if (json['enrolledWorkshops'] != null) {
       enrolledWorkshops = [];
       json['enrolledWorkshops'].forEach((v) {
-        enrolledWorkshops!.add( Result.fromJson(v));
+        enrolledWorkshops.add( Result.fromJson(v));
       });
     }
   }

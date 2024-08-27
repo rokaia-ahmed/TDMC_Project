@@ -69,9 +69,7 @@ class AuthRepo {
       );
       if (response.statusCode == 200) {
         return right(true);
-      } /*else if (response.statusCode == 400) {
-        return left(Failure('error in resent otp'));
-      }*/ else {
+      } else {
         return left(ServerFailure.fromResponse(response));
       }
     } catch (e) {

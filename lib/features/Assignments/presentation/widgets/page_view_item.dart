@@ -41,7 +41,7 @@ class PageViewItem extends StatelessWidget {
           value: 0.1,
           minHeight:AppSize.getVerticalSize(25),
           borderRadius: AppRadius.radius10,
-          backgroundColor: AppColors.gryColor2,
+          backgroundColor: AppColors.gryColor2.withOpacity(0.6),
           color: AppColors.secondColor,
         ),
         SizedBox(
