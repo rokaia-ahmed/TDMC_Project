@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:tdmc_project/core/utils/styles.dart';
 import 'package:tdmc_project/core/widgets/custom_buttons.dart';
+import 'package:tdmc_project/core/widgets/custom_error_widget.dart';
 import '../../../../core/utils/app_colors.dart';
-import '../../../../core/utils/app_constants.dart';
-import '../../../../core/utils/app_images.dart';
+import '../../../../core/utils/app_navigation.dart';
 import '../../../../core/utils/app_size.dart';
+import '../../../../core/widgets/custom_arrow_back.dart';
+import '../../../Assignments/presentation/screens/assignments_screen.dart';
 import '../../data/models/workshops_model.dart';
 import '../widgets/home_list_item.dart';
 
@@ -24,30 +25,13 @@ class DetailsScreen extends StatelessWidget {
               /// top row
               Row(
                 children: [
-                  InkWell(
-                    onTap: () {
-                      Navigator.pop(context);
-                    },
-                    child: Container(
-                      padding: AppSize.padding(horizontal: 10, vertical: 10),
-                      decoration: AppConstants.boxDecoration,
-                      child: SvgPicture.asset(AppIcons.rightArrow),
-                    ),
-                  ),
+                  CustomArrowBack(),
                   SizedBox(
                     width: AppSize.getHorizontalSize(10),
                   ),
                   Text(
                     '${model.companyName??''} ',
-                    style: Styles.textStyle20w600,
-                  ),
-                  Expanded(
-                    child: Text(
-                      model.topicName??'',
-                      style: Styles.textStyle15w400,
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                    ),
+                    style: Styles.textStyle20w700,
                   ),
                 ],
               ),
@@ -58,24 +42,30 @@ class DetailsScreen extends StatelessWidget {
               /// title text
               Text(
                 model.topicName??'',
-                style: Styles.textStyle20w600,
+                style: Styles.textStyle22w700,
               ),
               SizedBox(
                 height: AppSize.getVerticalSize(10),
               ),
-
+              if(model.learningOutcome ==null)
+              SizedBox(
+                height: AppSize.getVerticalSize(150),
+              ),
               /// over all text
+              (model.learningOutcome !=null)?
               Text(
                 model.learningOutcome??'',
                 style: Styles.grayText.copyWith(
                   fontWeight: FontWeight.w400,
                   height: 2.3,
                 ),
-              ),
+              ):
+                  CustomErrorWidget(
+                      error: 'There\'s no description found for this workshop'),
               SizedBox(
                 height: AppSize.getVerticalSize(40),
               ),
-
+               Spacer(),
               /// white card
               HomeListItem(model: model,),
               SizedBox(
@@ -89,8 +79,12 @@ class DetailsScreen extends StatelessWidget {
                   children: [
                     Expanded(
                       child: CustomDefaultButton(
-                        onTap: () {},
-                        text: 'Workshop assessment',
+                        onTap: () {
+                          AppNavigator.push(
+                              screen: AssignmentsScreen(),
+                              context: context);
+                        },
+                        text: 'Workshop Assessment',
                         textStyle: Styles.textStyle12w600.copyWith(
                           color: AppColors.white,
                         ),
@@ -110,6 +104,9 @@ class DetailsScreen extends StatelessWidget {
                     ),
                   ],
                 ),
+              ),
+              SizedBox(
+                height: AppSize.getVerticalSize(40),
               ),
             ],
           ),

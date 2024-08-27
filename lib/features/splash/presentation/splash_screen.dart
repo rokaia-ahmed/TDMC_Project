@@ -17,13 +17,13 @@ class SplashScreen extends StatefulWidget {
 
 class _SplashScreenState extends State<SplashScreen>
     with SingleTickerProviderStateMixin {
-  late AnimationController animationController;
-  late Animation<Offset> slidingAnimation;
+ // late AnimationController animationController;
+ // late Animation<Offset> slidingAnimation;
   @override
   void initState() {
-    animationController = AnimationController(
+    /*animationController = AnimationController(
       vsync: this,
-      duration: const Duration(seconds: 4),
+      duration: const Duration(seconds: 3),
     );
 
     slidingAnimation = Tween<Offset>(
@@ -31,16 +31,16 @@ class _SplashScreenState extends State<SplashScreen>
       end: Offset.zero,
     ).animate(animationController);
     animationController.forward();
-
+*/
     navigateTo(context);
     super.initState();
   }
 
-  @override
+  /*@override
   void dispose() {
-    animationController.dispose();
+  //  animationController.dispose();
     super.dispose();
-  }
+  }*/
 
   @override
   Widget build(BuildContext context) {
@@ -50,13 +50,14 @@ class _SplashScreenState extends State<SplashScreen>
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            AnimatedBuilder(
+            SvgPicture.asset(AppSvg.splash),
+           /* AnimatedBuilder(
               animation: slidingAnimation,
               builder: (context, _) => SlideTransition(
                 position: slidingAnimation,
                 child:SvgPicture.asset(AppSvg.splash),
               ),
-            ),
+            ),*/
           ],
         ),
       ),
@@ -64,7 +65,7 @@ class _SplashScreenState extends State<SplashScreen>
   }
 
   void navigateTo(context){
-    Future.delayed(const Duration(seconds:5),
+    Future.delayed(const Duration(seconds:3),
           (){
         if(CacheHelper.getData('token') !=null){
           AppNavigator.pushAndRemove(screen: const LayoutScreen(),

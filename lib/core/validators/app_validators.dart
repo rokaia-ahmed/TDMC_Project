@@ -25,6 +25,14 @@ validate(String value) {
   return null;
 }
 
+otpValidate(String value) {
+  if (value.isEmpty) {
+    return 'This field is required';
+  }else if(value.length<4)
+    return 'code must be 4 digit';
+  return null;
+}
+
 validatePassword(String value) {
   if (value.isEmpty) {
     return translateString('you should enter password', 'يجب ادخال كلمة المرور',);
@@ -79,8 +87,10 @@ validateMobile(String value) {
   //RegExp regExp = RegExp(pattern);
   if (value.isEmpty) {
     return 'This field is required';
-  }  else if (value.length != 10) {
-    return 'mobile phone must be 10 digits';
+  }  else if (value.length<6) {
+    return 'Mobile phone must be more than 5 digit';
+  }else if(value.length>11){
+    return 'Mobile phone must be less than 12 digit';
   }
   return null;
 }

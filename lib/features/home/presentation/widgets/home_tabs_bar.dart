@@ -30,7 +30,7 @@ class HomeTabsBar extends StatelessWidget {
               color: AppColors.primaryColor,
             ),
             radius: 10,
-            physics: NeverScrollableScrollPhysics(),
+            physics:AlwaysScrollableScrollPhysics(),
             buttonMargin: EdgeInsets.only(right: 20),
             splashColor: AppColors.primaryColor.withOpacity(0.2),
             contentCenter: true,
@@ -40,7 +40,7 @@ class HomeTabsBar extends StatelessWidget {
               Tab(text: 'Enrolled'),
               Tab(text: 'Completed'),
               Tab(text: 'Upcoming'),
-              Tab(text: 'Invited'),
+              Tab(text: 'Invitations'),
             ],
           ),
         );

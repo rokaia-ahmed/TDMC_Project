@@ -16,13 +16,18 @@ class OtpScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => getIt<AuthCubit>()..downCount(),
+      create: (context) => getIt<AuthCubit>()..startCountdown(),
       child: Scaffold(
         body: SafeArea(
           child: SingleChildScrollView(
             child: Padding(
               padding: AppSize.padding(all: 10),
-              child: BlocBuilder<AuthCubit,AuthState>(
+              child: BlocConsumer<AuthCubit,AuthState>(
+                listener:(context, state){
+                  if(state is LoadingOtp ){
+                    AuthCubit.get(context).startCountdown();
+                  }
+                },
                 builder: (context, state) {
                   var cubit =AuthCubit.get(context);
                   return Form(
@@ -34,23 +39,29 @@ class OtpScreen extends StatelessWidget {
                         /// otp
                         OtpPinCode(
                           controller: cubit.otpController,
-                          validator: (v)=>validate(v!),
+                          errorTextSpace:/*cubit.isValidate ?10:*/25,
+                          validator: (v)=>otpValidate(v!),
                         ),
+                        if(cubit.isValidate ==false)
                         SizedBox(
-                          height: AppSize.getVerticalSize(10),
+                          height: AppSize.getVerticalSize(5),
                         ),
-
+                        // cubit.count<30&&cubit.count>0
                         /// reset code
                         InkWell(
-                          onTap: (cubit.count<30&&cubit.count>0)?null:()=>
-                              cubit.resendOtp(context,phone),
+                          onTap: (state is CountdownTick)?null:(){
+                              cubit.resendOtp(context,phone);
+                              },
                           child: Padding(
                             padding: AppSize.padding(start: 20),
-                            child: Text('Resend code (00:${cubit.count})',
+                            child: Text('Resend code ${(cubit.count<30&&cubit.count>0)?
+                            '(00:${cubit.count})':''}',
                               style: Styles.textStyle14w400.copyWith(
-                                color:(cubit.count<30&&cubit.count>0)?AppColors.gryTextColor3
+                                decorationColor:AppColors.gryTextColor3 ,
+                                color:(state is CountdownTick)?AppColors.gryTextColor3
                                     :AppColors.primaryColor,
-                                decoration: TextDecoration.underline,
+                                decoration:(state is CountdownTick)?
+                                TextDecoration.underline:null,
                               ),
                             ),
                           ),
@@ -61,7 +72,9 @@ class OtpScreen extends StatelessWidget {
 
                         /// button
                         CustomDefaultButton(
-                          loading: state is Loading,
+                          loading: (state is Loading )
+                              || (state is LoadingOtp)
+                              /*|| (state is CountdownStopped)*/,
                           onTap: () {
                            cubit.otp(context, phone);
                           },

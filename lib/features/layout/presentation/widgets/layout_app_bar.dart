@@ -18,14 +18,20 @@ class LayoutAppBar extends StatelessWidget {
       child: Row(
         children: [
           Text('Hello, ${CacheHelper.getData('userName')}!',
-            style: Styles.textStyle24w700,
+            style: Styles.textStyle22w700.copyWith(
+              fontWeight: FontWeight.w800
+            ),
           ),
           Spacer(),
-          Container(
-            padding: AppSize.padding(
-                horizontal: 7, vertical: 7),
-            decoration: AppConstants.boxDecoration,
-            child: SvgPicture.asset(AppIcons.notification),
+          InkWell(
+            onTap:(){
+            },
+            child: Container(
+              padding: AppSize.padding(
+                  horizontal: 7, vertical: 7),
+              decoration: AppConstants.boxDecoration,
+              child: SvgPicture.asset(AppIcons.notification),
+            ),
           ),
           SizedBox(width: AppSize.getHorizontalSize(15),),
           InkWell(

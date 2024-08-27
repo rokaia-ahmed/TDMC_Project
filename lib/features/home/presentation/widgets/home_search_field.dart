@@ -16,7 +16,6 @@ class HomeSearchField extends StatelessWidget {
           onChanged:(value){
             var error = state is Error ?state.errorMsg:'';
             cubit.searchWorkshops(value,error) ;
-            print(value);
           },
           controller: cubit.searchController,
           prefixIcon: AppIcons.search,

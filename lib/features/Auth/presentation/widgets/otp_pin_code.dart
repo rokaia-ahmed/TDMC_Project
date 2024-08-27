@@ -6,9 +6,11 @@ import '../../../../core/utils/app_size.dart';
 import '../../../../core/utils/styles.dart';
 
 class OtpPinCode extends StatelessWidget {
-  const OtpPinCode({super.key, required this.controller, this.validator});
+  const OtpPinCode({super.key, required this.controller,
+    this.validator, required this.errorTextSpace});
   final TextEditingController controller ;
   final String? Function(String?)? validator ;
+  final double errorTextSpace;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -17,13 +19,14 @@ class OtpPinCode extends StatelessWidget {
         length: 4,
         appContext: context,
         obscureText: false,
-        errorTextSpace: 13,
+        errorTextSpace: errorTextSpace,
         cursorColor: AppColors.primaryColor,
         textStyle: Styles.textStyle20w500,
         keyboardType: TextInputType.number,
         enablePinAutofill: true,
         scrollPadding: EdgeInsets.zero,
         validator:validator ,
+        autovalidateMode:AutovalidateMode.disabled,
         animationDuration: const Duration(milliseconds: 300),
         pinTheme: PinTheme(
           fieldOuterPadding:EdgeInsets.zero,

@@ -39,40 +39,83 @@ class HomeCubit extends Cubit<HomeState> {
     }
   }
 
+  onControllerEmpty(){
+    searchList.clear();
+    emit(Success());
+  }
+
   /// search
   List<Result> searchList = [];
-  searchWorkshops(String text, String error) {
+  searchWorkshops(String text, String error){
     searchList = [];
+    bool isFound = false;
     if (workShopsModel != null) {
-      if (tabBarIndex == 0) {
-        searchList.addAll(workShopsModel!.enrolledWorkshops!
-            .where(
-              (e) =>
-                  e.fromDate!.contains(text) ||
-                  e.companyName!.contains(text) ||
-                  e.venueName!.contains(text),
-            )
-            .toList());
-      } else if (tabBarIndex == 1) {
-        searchList.addAll(workShopsModel!.completedWorkshops!
-            .where(
-              (e) =>
-                  e.fromDate!.contains(text) ||
-                  e.companyName!.contains(text) ||
-                  e.venueName!.contains(text),
-            )
-            .toList());
-      } else {
-        searchList.addAll(workShopsModel!.upcomingWorkshops!
-            .where(
-              (e) =>
-                  e.fromDate!.contains(text) ||
-                  e.companyName!.contains(text) ||
-                  e.venueName!.contains(text),
-            )
-            .toList());
+      if(text.isEmpty){
+        onControllerEmpty();
+        return ;
       }
-      emit(SearchSuccess());
+      if (tabBarIndex == 0) {
+        workShopsModel!.enrolledWorkshops!.forEach((e){
+          if((e.topicName?.contains(text)??false) ||
+              (e.companyName?.contains(text)??false) ||
+              (e.venueName?.contains(text)??false)
+          ){
+            searchList.add(e);
+            isFound=true;
+          }
+        });
+        if(isFound==true){
+          emit(SearchSuccess());
+        }else{
+          emit(SearchError('No search result'));
+        }
+      }
+      else if (tabBarIndex == 1) {
+        workShopsModel!.completedWorkshops!.forEach((item){
+          if ((item.venueName?.contains(text)??false) ||
+              (item.companyName?.contains(text)??false) ||
+              (item.topicName?.contains(text)??false)
+          ) {
+             searchList.add(item);
+             isFound = true ;
+          }
+        });
+        if(isFound==true){
+          emit(SearchSuccess());
+        }else{
+          emit(SearchError('No search result'));
+        }
+      } if(tabBarIndex == 2) {
+        workShopsModel!.upcomingWorkshops!.forEach((e) {
+          if ((e.topicName?.contains(text)??false) ||
+              (e.companyName?.contains(text)??false) ||
+              (e.venueName?.contains(text)??false)
+          ) {
+            searchList.add(e);
+            isFound=true;
+          }
+        });
+        if(isFound==true){
+          emit(SearchSuccess());
+        }else{
+          emit(SearchError('No search result'));
+        }
+      }else {
+        workShopsModel!.invitedWorkshops!.forEach((e) {
+          if ((e.topicName?.contains(text)??false) ||
+              (e.companyName?.contains(text)??false) ||
+              (e.venueName?.contains(text)??false)
+          ) {
+            searchList.add(e);
+            isFound=true;
+          }
+        });
+        if(isFound==true){
+          emit(SearchSuccess());
+        }else{
+          emit(SearchError('No search result'));
+        }
+      }
     } else {
       emit(Error(error));
     }
@@ -80,6 +123,7 @@ class HomeCubit extends Cubit<HomeState> {
 
   clearSearch() {
     searchList = [];
+    searchController.clear();
     if (workShopsModel != null) {
       emit(Success());
     }

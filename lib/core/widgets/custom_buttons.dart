@@ -12,29 +12,35 @@ class CustomDefaultButton extends StatelessWidget {
     required this.onTap,
     required this.text,
     this.width, this.height,
-     this.loading, this.textStyle});
+     this.loading, this.textStyle,
+    this.textColor, this.bgColor, this.elevation});
 
   final Function() onTap ;
   final String text  ;
   final TextStyle? textStyle  ;
   final double? width  ;
   final double? height  ;
+  final double? elevation  ;
   final bool? loading ;
+  final Color? textColor ;
+  final Color? bgColor ;
   @override
   Widget build(BuildContext context) {
     return MaterialButton(
       onPressed: onTap,
-      elevation:0.0,
+      elevation:elevation??0,
       height:height?? AppSize.getVerticalSize(50),
       minWidth:width?? double.infinity,
       color: loading==true? AppColors.borderColor:
-      AppColors.primaryColor,
+      bgColor?? AppColors.primaryColor,
       shape: AppConstants.dialogShape,
       child:loading==true?
           const CircularProgressIndicator():
-      Text(text,
-        style:textStyle ?? Styles.textStyle16w400.copyWith(
-          color: AppColors.white,
+      Center(
+        child: Text(text,
+          style:textStyle ?? Styles.textStyle16w400.copyWith(
+            color:textColor?? AppColors.white,
+          ),
         ),
       ),
     );

@@ -24,8 +24,8 @@ class CountryCode extends StatelessWidget {
           height: AppSize.getVerticalSize(50),
           child: CountryCodePicker(
             padding: EdgeInsets.zero,
-            initialSelection: 'EG',
-            favorite: const ['+20', 'EG'],
+            initialSelection: 'SA',
+            favorite: const ['+966', 'SA'],
             flagWidth: AppSize.getHorizontalSize(25),
             boxDecoration:BoxDecoration(
               borderRadius: AppRadius.radius10,

@@ -13,21 +13,22 @@ class HomeListItem extends StatelessWidget {
       onTap:onTap,
       child: Card(
         margin: EdgeInsets.zero,
+        elevation: 1.5,
         child:Padding(
           padding: const EdgeInsets.all(10.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(model.companyName??'',
-                style:Styles.textStyle16w600,
+                style:Styles.textStyle16w700,
               ),
               SizedBox(height: AppSize.getVerticalSize(5),),
-              Text(model.venueName??'',
+              Text('${model.venueName??''} - ${model.topicName}',
               style:Styles.grayText,
               ),
               SizedBox(height: AppSize.getVerticalSize(5),),
               Text(model.fromDate!,
-                style:Styles.textStyle12w500,
+                style:Styles.textStyle12w600,
               ),
             ],
           ),

@@ -18,7 +18,7 @@ class AuthRepo {
       if (response.statusCode == 200) {
         return right(true);
       } else if (response.statusCode == 400) {
-        return left(Failure('error in phone number'));
+        return left(Failure('Error in code or phone number'));
       } else {
         return left(ServerFailure.fromResponse(response));
       }
@@ -46,7 +46,7 @@ class AuthRepo {
         CacheHelper.saveData('userName', response.data['user']['userName']);
         return right(true);
       } else if (response.statusCode == 400) {
-        return left(Failure('error in otp code'));
+        return left(Failure('Invalid otp'));
       } else {
         return left(ServerFailure.fromResponse(response));
       }

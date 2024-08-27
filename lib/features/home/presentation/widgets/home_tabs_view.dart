@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tdmc_project/core/utils/app_size.dart';
 import 'package:tdmc_project/features/home/logic/home_cubit.dart';
 import '../../../../core/utils/app_navigation.dart';
+import '../../../../core/widgets/custom_error_widget.dart';
 import '../screens/details_screen.dart';
 import 'home_list_item.dart';
 
@@ -17,8 +18,8 @@ class HomeTabsView extends StatelessWidget {
         if(state is Loading){
          return Center(child: CircularProgressIndicator());
        }else if(state is Error){
-         return Center(child: Text(state.errorMsg));
-       }else if(state is Success ||state is SearchSuccess){
+         return CustomErrorWidget(error: state.errorMsg,);
+       } else if(state is Success ||state is SearchSuccess){
          return Expanded(
            child: TabBarView(
              physics: NeverScrollableScrollPhysics(),
@@ -34,7 +35,9 @@ class HomeTabsView extends StatelessWidget {
              ],
            ),
          );
-       }else{
+       }else if(state is SearchError){
+          return CustomErrorWidget(error: state.errorMsg,);
+        } else{
          return Container() ;
        }
       },

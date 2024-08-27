@@ -8,6 +8,10 @@ abstract class Styles {
     fontSize: AppSize.fontSize(32),
     fontWeight: FontWeight.w700,
   );
+  static  TextStyle textStyle28w700 = TextStyle(
+    fontSize: AppSize.fontSize(28),
+    fontWeight: FontWeight.w700,
+  );
   static  TextStyle textStyle24w700 = TextStyle(
     fontSize: AppSize.fontSize(24),
     fontWeight: FontWeight.w700,
@@ -16,13 +20,25 @@ abstract class Styles {
     fontSize: AppSize.fontSize(24),
     fontWeight: FontWeight.w600,
   );
+  static  TextStyle textStyle22w700 = TextStyle(
+    fontSize: AppSize.fontSize(22),
+    fontWeight: FontWeight.w700,
+  );
   static  TextStyle textStyle20w600 = TextStyle(
     fontSize: AppSize.fontSize(20),
     fontWeight: FontWeight.w600,
   );
+  static  TextStyle textStyle20w700 = TextStyle(
+    fontSize: AppSize.fontSize(20),
+    fontWeight: FontWeight.w700,
+  );
   static  TextStyle textStyle20w500 = TextStyle(
     fontSize: AppSize.fontSize(20),
     fontWeight: FontWeight.w500,
+  );
+  static  TextStyle textStyle20w400 = TextStyle(
+    fontSize: AppSize.fontSize(20),
+    fontWeight: FontWeight.w400,
   );
   static  TextStyle textStyle18w700 = TextStyle(
     fontSize: AppSize.fontSize(18),
@@ -74,7 +90,10 @@ abstract class Styles {
     fontSize: AppSize.fontSize(12),
     fontWeight: FontWeight.w500,
   );
-
+  static  TextStyle textStyle11w700 = TextStyle(
+    fontSize: AppSize.fontSize(11),
+    fontWeight: FontWeight.w700,
+  );
   static  TextStyle textStyle10w600 = TextStyle(
     fontSize: AppSize.fontSize(10),
     fontWeight: FontWeight.w600,

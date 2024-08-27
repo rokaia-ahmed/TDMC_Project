@@ -14,13 +14,13 @@ class HomeFilterRow extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Text('Workshops',
-          style: Styles.textStyle24w600,
+          style: Styles.textStyle22w700,
         ),
         BlocBuilder<HomeCubit,HomeState>(
           builder: (context, state) {
             var cubit =  HomeCubit.get(context);
             return InkWell(
-              onTap:cubit.searchList.isNotEmpty?() {
+              onTap:(cubit.searchList.isNotEmpty)?() {
                 cubit.clearSearch();
               }:null,
               child: Text('Rest Filter',
@@ -28,6 +28,8 @@ class HomeFilterRow extends StatelessWidget {
                   color: (cubit.searchList.isNotEmpty)?
                   AppColors.primaryColor:AppColors.gryTextColor3,
                   decoration: TextDecoration.underline,
+                  decorationColor:(cubit.searchList.isNotEmpty)?
+                  AppColors.primaryColor: AppColors.gryTextColor3,
                 ),
               ),
             );

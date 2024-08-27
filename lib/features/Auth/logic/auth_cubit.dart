@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tdmc_project/features/Auth/data/repos/auth_repo.dart';
@@ -40,7 +42,7 @@ class AuthCubit extends Cubit<AuthState> {
     await AppHelper.closeKeyboard();
     if (formKey.currentState!.validate()) {
       emit(Loading());
-      await repo.login(countryCode+phoneController.text).then((value) {
+      await repo.login(countryCode + phoneController.text).then((value) {
         value.fold((l) {
           AppDialogs.toast(
             msg: l.message,
@@ -48,11 +50,9 @@ class AuthCubit extends Cubit<AuthState> {
           );
           emit(Error());
         }, (r) {
-          AppDialogs.toast(
-              msg: 'login is successfully', state: ToastStates.success);
           AppNavigator.push(
               screen: OtpScreen(
-                phone: countryCode+phoneController.text,
+                phone: countryCode + phoneController.text,
               ),
               context: context);
           emit(Success());
@@ -60,58 +60,72 @@ class AuthCubit extends Cubit<AuthState> {
       });
     }
   }
-
+   bool isValidate = true ;
   /// otp
   void otp(context, String phone) async {
     await AppHelper.closeKeyboard();
-    if (formKey.currentState!.validate()) {
-      emit(Loading());
-      await repo.otp(phone, otpController.text).then((value) {
-        value.fold((l) {
-          AppDialogs.toast(
-            msg: l.message,
-            state: ToastStates.error,
-          );
-          downCount();
-          emit(Error());
-        }, (r) {
-          AppDialogs.toast(
-              msg: 'verify code is successfully', state: ToastStates.success);
-          AppNavigator.pushAndRemove(screen: const LayoutScreen(),
-              context: context);
-          emit(Success());
-        });
-      });
-    }
-  }
-    /// count down
-  int count = 30;
-  void downCount() async {
-    count = 30;
-    while (count > 0) {
-      await Future.delayed(
-        const Duration(seconds: 1),
+    if (!formKey.currentState!.validate()){
+      isValidate = false ;
+      return ;
+    };
+    emit(Loading());
+    final result = await repo.otp(phone, otpController.text);
+    result.fold((l) {
+      AppDialogs.toast(
+        msg: l.message,
+        state: ToastStates.error,
       );
-      count--;
-      emit(AuthInitial());
-    }
+      emit(Error());
+    }, (r) {
+      stopCountdown();
+      AppNavigator.pushAndRemove(
+          screen: const LayoutScreen(), context: context);
+      emit(Success());
+    });
+
   }
 
+  /// count down
+  Timer? _countdownTimer;
+  int count = 30;
+  void startCountdown() {
+    // Ensure any existing timer is canceled before starting a new one
+    _countdownTimer?.cancel();
+    count = 30;
+
+    // Emit initial countdown state
+    emit(CountdownTick(count));
+
+    _countdownTimer = Timer.periodic(Duration(seconds: 1), (timer) {
+      if (count > 0) {
+        count--;
+        emit(CountdownTick(count));
+      } else {
+        timer.cancel();
+        emit(CountdownComplete());
+      }
+    });
+  }
+  /// stop count
+  void stopCountdown() {
+    count = 0 ;
+    if (_countdownTimer != null && _countdownTimer!.isActive) {
+      _countdownTimer!.cancel();
+    //  emit(CountdownStopped());
+    }
+  }
   /// resend otp
   void resendOtp(context, String phone) async {
-    emit(Loading());
+    emit(LoadingOtp());
     await repo.resentOtp(phone).then((value) {
       value.fold((l) {
         /// down count 30 seconds
-        downCount();
+        startCountdown();
         AppDialogs.toast(msg: l.message, state: ToastStates.error);
         emit(Error());
       }, (r) {
         /// down count 30 seconds
-        downCount();
-        AppDialogs.toast(
-            msg: 'OTP resend successfully',
-            state: ToastStates.success);
+        startCountdown();
         emit(Success());
       });
     });
