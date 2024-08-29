@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import '../utils/app_colors.dart';
 import '../utils/app_constants.dart';
 import '../utils/app_radius.dart';
@@ -39,7 +38,7 @@ class CustomDefaultButton extends StatelessWidget {
       Center(
         child: Text(text,
           style:textStyle ?? Styles.textStyle16w400.copyWith(
-            color:textColor?? AppColors.white,
+            color:textColor?? Colors.white,
           ),
         ),
       ),
@@ -89,7 +88,7 @@ class CustomButtonWithIcon extends StatelessWidget {
           ),*/
           Text(text,
             style: Styles.textStyle14w400.copyWith(
-              color: textColor?? AppColors.white,
+              color: textColor?? Colors.white,
               fontWeight: FontWeight.w700,
             ),
           ),
@@ -99,27 +98,6 @@ class CustomButtonWithIcon extends StatelessWidget {
   }
 }
 
-////////////////////////////////////////////
-class CustomUploadImagesButton extends StatelessWidget {
-  const CustomUploadImagesButton({super.key, required this.onTap, this.borderColor});
-  final Function() onTap ;
-  final Color? borderColor ;
-  @override
-  Widget build(BuildContext context) {
-    return MaterialButton(
-      onPressed:onTap,
-      height:AppSize.getVerticalSize(50) ,
-      minWidth: double.infinity,
-      shape: OutlineInputBorder(
-        borderRadius: AppRadius.radius20,
-        borderSide:  BorderSide(
-          color:borderColor?? AppColors.borderColor,
-        ),
-      ),
-      child:SvgPicture.asset(''),
-    );
-  }
-}
 ////////////////////////////////////////////
 class CustomBorderButton extends StatelessWidget {
   const CustomBorderButton({super.key,

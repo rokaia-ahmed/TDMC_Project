@@ -56,7 +56,7 @@ class MyApp extends StatelessWidget {
           CountryLocalizations.delegate,
         ],
         theme: ThemeData(
-          scaffoldBackgroundColor:AppColors.white,
+          scaffoldBackgroundColor:AppColors.scaffoldColor,
           colorScheme:const ColorScheme.light(primary: AppColors.primaryColor),
           useMaterial3: true,
           fontFamily: 'Inter',

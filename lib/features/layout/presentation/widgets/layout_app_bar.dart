@@ -24,8 +24,7 @@ class LayoutAppBar extends StatelessWidget {
           ),
           Spacer(),
           InkWell(
-            onTap:(){
-            },
+            onTap:(){},
             child: Container(
               padding: AppSize.padding(
                   horizontal: 7, vertical: 7),

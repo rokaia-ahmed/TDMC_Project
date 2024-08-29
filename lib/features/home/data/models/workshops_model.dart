@@ -59,7 +59,9 @@ class Result {
   String? link;
   int? modality;
   String? enrollmentId;
-  List<Null>? competencies;
+  bool? canWithdraw;
+  bool? showWorkshopAssessment;
+
 
 
   Result.fromJson(Map<String, dynamic> json) {
@@ -82,12 +84,8 @@ class Result {
     link = json['link'];
     modality = json['modality'];
     enrollmentId = json['enrollmentId'];
-    /*if (json['competencies'] != null) {
-      competencies = [];
-      json['competencies'].forEach((v) {
-        competencies!.add( Null.fromJson(v));
-      });
-    }*/
+    canWithdraw =json['canWithdraw'];
+    showWorkshopAssessment =json['showWokrshopAssessment'];
   }
 
 }

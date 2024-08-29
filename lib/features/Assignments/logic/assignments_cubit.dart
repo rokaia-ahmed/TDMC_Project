@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tdmc_project/features/Assignments/data/models/submit_assignment.dart';
-
-import '../../../core/utils/app_navigation.dart';
 import '../../../core/utils/helper/app_dialogs.dart';
 import '../data/models/questions_model.dart';
 import '../data/repos/assignments_repo.dart';
@@ -77,10 +75,14 @@ class AssignmentsCubit extends Cubit<AssignmentsState> {
           );
           emit(Error(l.message));
         }, (r) {
-          AppNavigator.replace(
-              screen: AssignmentsSuccess(),
-              context: context);
-              emit(Success());
+          showModalBottomSheet(context: context,
+            isScrollControlled: true,
+            backgroundColor: Colors.transparent,
+            isDismissible:false ,
+            elevation: 1,
+            builder: (context)=> AssignmentsSuccess(),
+          );
+          emit(Success());
         });
       });
   }

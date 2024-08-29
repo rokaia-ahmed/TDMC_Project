@@ -17,5 +17,5 @@ class AppColors {
 
 
   static const Color red =  Color(0xffFF0000);
-  static const Color white = Color(0xffF1F6F9);
+  static const Color scaffoldColor = Color(0xffF1F6F9);
 }

@@ -5,7 +5,6 @@ import 'package:tdmc_project/core/utils/styles.dart';
 import 'package:tdmc_project/core/widgets/custom_buttons.dart';
 import 'package:tdmc_project/core/widgets/custom_error_widget.dart';
 import 'package:tdmc_project/features/home/logic/home_cubit.dart';
-import '../../../../core/utils/app_colors.dart';
 import '../../../../core/utils/app_navigation.dart';
 import '../../../../core/utils/app_size.dart';
 import '../../../../core/widgets/custom_arrow_back.dart';
@@ -87,6 +86,8 @@ class DetailsScreen extends StatelessWidget {
                 padding: AppSize.padding(horizontal: 15),
                 child: Row(
                   children: [
+                    /// assignment
+                    if(model.showWorkshopAssessment==true)
                     Expanded(
                       child: CustomDefaultButton(
                         onTap: () {
@@ -98,15 +99,16 @@ class DetailsScreen extends StatelessWidget {
                         },
                         text: 'Workshop Assessment',
                         textStyle: Styles.textStyle12w600.copyWith(
-                          color: AppColors.white,
+                          color: Colors.white,
                         ),
                       ),
                     ),
+                    if(model.showWorkshopAssessment==true&&model.canWithdraw==true)
                     SizedBox(
                       width: AppSize.getHorizontalSize(10),
                     ),
-
                     /// withdraw
+                    if(model.canWithdraw==true)
                     BlocProvider(
                       create: (context) => getIt<HomeCubit>(),
                       child: BlocBuilder<HomeCubit, HomeState>(
@@ -120,7 +122,7 @@ class DetailsScreen extends StatelessWidget {
                               },
                               text: 'Withdraw',
                               textStyle: Styles.textStyle12w600.copyWith(
-                                color: AppColors.white,
+                                color: Colors.white,
                               ),
                             ),
                           );
