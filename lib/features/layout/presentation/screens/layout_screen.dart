@@ -28,6 +28,7 @@ class LayoutScreen extends StatelessWidget {
         builder: (context, state) {
           var cubit = LayoutCubit.get(context);
           return Scaffold(
+            resizeToAvoidBottomInset:false,
             body: SafeArea(
               child: Column(
                 children: [

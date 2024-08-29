@@ -12,8 +12,12 @@ class AppShadows {
   ];
 
   static List<BoxShadow> custom1 = const <BoxShadow>[
-    BoxShadow(blurRadius: 4.0, color: AppColors.shadowColor,
-        offset: Offset(1.0, 2.0),
-    ),
+    BoxShadow(
+      color:AppColors.shadowBlueColor,
+      spreadRadius:0,
+      offset: Offset(2, 2),
+      blurRadius: 4,
+      blurStyle: BlurStyle.solid,
+        ),
   ];
 }

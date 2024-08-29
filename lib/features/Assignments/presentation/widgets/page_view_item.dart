@@ -1,81 +1,138 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tdmc_project/core/utils/app_colors.dart';
 import 'package:tdmc_project/core/utils/app_constants.dart';
 import 'package:tdmc_project/core/utils/app_radius.dart';
 import 'package:tdmc_project/core/utils/app_size.dart';
 import 'package:tdmc_project/core/utils/styles.dart';
+import 'package:tdmc_project/features/Assignments/logic/assignments_cubit.dart';
+import '../../data/models/questions_model.dart';
+import 'BuildOptionContainer.dart';
 
 class PageViewItem extends StatelessWidget {
-  const PageViewItem({super.key, required this.index});
-  final int index ;
+  const PageViewItem(
+      {super.key,
+      required this.model,
+      required this.numOfQuestion,
+      required this.totalNumber});
+
+  final QuestionsModel model;
+  final int numOfQuestion;
+  final int totalNumber;
   @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         /// number of question row
-        Row(
-         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-         Container(
-           padding: AppSize.padding(vertical:5,horizontal:10),
-           decoration: AppConstants.boxDecoration,
-             child: Text('Questions $index',
-             style: Styles.textStyle16w700.copyWith(
-               color: AppColors.primaryColor,
-             ),
-             ),
-         ),
-          Text('1/10',
-            style: Styles.textStyle16w700.copyWith(
-              color: AppColors.primaryColor,
+        Padding(
+          padding: AppSize.padding(horizontal: 7),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Container(
+                padding: AppSize.padding(vertical: 5, horizontal: 10),
+                decoration: AppConstants.boxDecoration,
+                child: Text(
+                  'Questions $numOfQuestion',
+                  style: Styles.textStyle16w700.copyWith(
+                    color: AppColors.primaryColor,
+                  ),
+                ),
+              ),
+              Text(
+                '${numOfQuestion}/${totalNumber}',
+                style: Styles.textStyle16w700.copyWith(
+                  color: AppColors.primaryColor,
+                ),
+              ),
+            ],
+          ),
+        ),
+        SizedBox(
+          height: AppSize.getVerticalSize(15),
+        ),
+
+        /// linear progress
+        Padding(
+          padding: AppSize.padding(horizontal: 7),
+          child: LinearProgressIndicator(
+            value: numOfQuestion / totalNumber,
+            minHeight: AppSize.getVerticalSize(25),
+            borderRadius: AppRadius.radius10,
+            backgroundColor: AppColors.gryColor2.withOpacity(0.6),
+            color: AppColors.secondColor,
+          ),
+        ),
+        SizedBox(
+          height: AppSize.getVerticalSize(15),
+        ),
+
+        /// question in english
+        Padding(
+          padding: AppSize.padding(horizontal: 7),
+          child: Text(
+            model.title ?? '',
+            style: Styles.textStyle16w700,
+          ),
+        ),
+        SizedBox(
+          height: AppSize.getVerticalSize(2),
+        ),
+
+        /// question in arabic
+        Align(
+          alignment: Alignment.topRight,
+          child: Padding(
+            padding: AppSize.padding(start: 7,end: 20),
+            child: Text(
+              model.titleAr ?? '',
+              textAlign: TextAlign.right,
+              style: Styles.textStyle16w400.copyWith(
+                fontWeight: FontWeight.w600,
+              ),
             ),
           ),
-        ],
-       ),
-        SizedBox(
-          height: AppSize.getVerticalSize(15),
-        ),
-        /// linear progress
-        LinearProgressIndicator(
-          value: 0.1,
-          minHeight:AppSize.getVerticalSize(25),
-          borderRadius: AppRadius.radius10,
-          backgroundColor: AppColors.gryColor2.withOpacity(0.6),
-          color: AppColors.secondColor,
         ),
         SizedBox(
           height: AppSize.getVerticalSize(15),
         ),
-        Text(
-          'Course material met the stated objectives ',
-          style: Styles.textStyle16w700,
-        ),
-        SizedBox(
-          height: AppSize.getVerticalSize(15),
-        ),
-       // BuildChooseContainer(),
-        /// Questions
-        Flexible(
-          child: ListView.separated(
-               shrinkWrap: true,
-              physics:AlwaysScrollableScrollPhysics(),
-              itemBuilder:(context,index)=>BuildChooseContainer(),
-              separatorBuilder: (context,index)=>SizedBox(
-                height: AppSize.getVerticalSize(10),
-              ),
-              itemCount: 4),
+        // BuildChooseContainer(),
+        /// Options
+        BlocBuilder<AssignmentsCubit, AssignmentsState>(
+          builder: (context, state) {
+            var cubit =AssignmentsCubit.get(context);
+            return Expanded(
+              child: ListView.separated(
+                  shrinkWrap: true,
+                  physics: AlwaysScrollableScrollPhysics(),
+                  itemBuilder: (context, index) => BuildOptionContainer(
+                        model: model.questionOptions[index],
+                        onTap: () {
+                          cubit.onSelectOption(
+                              numOfQuestion-1, index,
+                              model.questionOptions[index].id!,
+                          );
+                        }, optionLetter: cubit.numberingOptions[index],
+                      ),
+                  separatorBuilder: (context, index) => SizedBox(
+                        height: AppSize.getVerticalSize(5),
+                      ),
+                  itemCount: model.questionOptions.length),
+            );
+          },
         ),
         SizedBox(
           height: AppSize.getVerticalSize(10),
         ),
+
         Padding(
-          padding: AppSize.padding(start:15),
+          padding: AppSize.padding(start: 15),
           child: Text(
             'Unanswered questions\n'
             '(Click on the number to go to the question)',
-            style: Styles.textStyle14w600.copyWith(
-              color: AppColors.gryColor,
+            style: Styles.textStyle14w400.copyWith(
+              height: 1.2,
             ),
           ),
         ),
@@ -84,61 +141,3 @@ class PageViewItem extends StatelessWidget {
   }
 }
 
-class BuildChooseContainer extends StatelessWidget {
-  const BuildChooseContainer({super.key});
-  @override
-  Widget build(BuildContext context) {
-    return InkWell(
-      onTap: (){
-
-      },
-      child: Container(
-        padding: AppSize.padding(vertical: 7,end:7),
-        margin:AppSize.padding(start: 15) ,
-        decoration:BoxDecoration(
-          boxShadow: [
-            BoxShadow(
-              color:AppColors.shadowBlueColor,
-              spreadRadius: 0,
-              offset: Offset(2, 2),
-              blurRadius: 4,
-              blurStyle: BlurStyle.normal,
-            ),
-          ],
-          borderRadius: AppRadius.radius15,
-          color: Colors.white,
-        ),
-        child: Row(
-          mainAxisSize: MainAxisSize.min,
-         // mainAxisAlignment: MainAxisAlignment.end,
-          children: [
-            Container(
-              padding:AppSize.padding(horizontal: 13,
-                  vertical: 3),
-              decoration:BoxDecoration(
-                borderRadius: AppRadius.radius20,
-                color: AppColors.secondColor,
-              ),
-              child:Text('A',
-                style:Styles.textStyle18w600.copyWith(color: Colors.white),
-              ),
-            ),
-            SizedBox(
-              width: AppSize.getHorizontalSize(10),
-            ),
-            Expanded(
-              child: Text(
-                maxLines: 2,
-                'Course material met the stated objectives',
-                   // 'حققت المادة العلمية الأهداف المنشودة من ورشة العمل'
-                style: Styles.textStyle16w400.copyWith(
-                  height: 1.1,
-                ),
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}

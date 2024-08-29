@@ -15,7 +15,7 @@ class CustomDefaultButton extends StatelessWidget {
      this.loading, this.textStyle,
     this.textColor, this.bgColor, this.elevation});
 
-  final Function() onTap ;
+  final Function()? onTap ;
   final String text  ;
   final TextStyle? textStyle  ;
   final double? width  ;

@@ -63,4 +63,13 @@ class DioHelper {
   }) async {
     return await dio!.delete(url, queryParameters: query);
   }
+
+  /// METHOD [POST] DATA FROM API
+  static Future<Response> patchData({
+    required String url,
+    Map<String, dynamic>? query,
+    data,
+  }) async {
+    return await dio!.patch(url, data: data, queryParameters: query);
+  }
 }

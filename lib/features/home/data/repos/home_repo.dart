@@ -30,4 +30,23 @@ class HomeRepo{
       }
     }
   }
+
+  Future<Either<Failure, bool>> withdraw(String id) async {
+    try {
+      Response response = await DioHelper.patchData(
+        url: '${ApiConstants.withdraw}/$id',
+      );
+      if (response.statusCode == 200) {
+        return right(true);
+      } else {
+        return left(ServerFailure('Error in withdraw'));
+      }
+    } catch (e) {
+      if (e is DioException) {
+        return left(ServerFailure.fromDioError(e));
+      } else {
+        return left(ServerFailure(e.toString()));
+      }
+    }
+  }
 }

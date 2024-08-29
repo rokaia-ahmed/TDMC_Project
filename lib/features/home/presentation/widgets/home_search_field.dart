@@ -17,6 +17,9 @@ class HomeSearchField extends StatelessWidget {
             var error = state is Error ?state.errorMsg:'';
             cubit.searchWorkshops(value,error) ;
           },
+        /*  onTapOutside: (pointerDownEvent){
+            AppHelper.closeKeyboard();
+          },*/
           controller: cubit.searchController,
           prefixIcon: AppIcons.search,
           hint: 'Search',

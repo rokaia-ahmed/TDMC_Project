@@ -30,6 +30,7 @@ class AppSvg {
   static const String splash = '$svg/splash.svg';
   static const String logo = '$svg/logo.svg';
   static const String otpImg = '$svg/otp_img.svg';
+  static const String success = '$svg/success.svg';
 
 }
 

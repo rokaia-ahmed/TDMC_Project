@@ -8,6 +8,11 @@ class ApiConstants{
 
   /// home
   static const String workshops = 'workshop/employeeworkshops';
+  static const String withdraw = 'enrollment';
+
+  /// assignments
+  static const String questions = 'workshopevaluation/';
+  static const String SubmitOption = 'employeeworkshopevaluation/bulk';
 }
 
 

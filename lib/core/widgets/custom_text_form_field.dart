@@ -31,7 +31,7 @@ class CustomTextField extends StatelessWidget {
     this.codeWidget,
     this.suffixOnTap,
     this.suffix, this.onChanged,
-    this.onFieldSubmitted, this.onEditingComplete,
+    this.onFieldSubmitted, this.onEditingComplete, this.onTapOutside,
   });
 
   final TextInputType keyboardType;
@@ -60,7 +60,8 @@ class CustomTextField extends StatelessWidget {
   final Function()? onEditingComplete;
   final Function(String)? onChanged;
   final Function()? suffixOnTap;
-  final void Function(String)? onFieldSubmitted;
+  final  Function(String)? onFieldSubmitted;
+  final  Function(PointerDownEvent)? onTapOutside;
   final FormFieldValidator<String>? validator;
   final List<TextInputFormatter>? inputFormatters;
 
@@ -72,6 +73,7 @@ class CustomTextField extends StatelessWidget {
         onTap: onTap,
         onFieldSubmitted: onFieldSubmitted,
         onChanged:onChanged ,
+        onTapOutside:onTapOutside ,
         onEditingComplete:onEditingComplete,
         enabled: enabled,
         minLines: minLines,

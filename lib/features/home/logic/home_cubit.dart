@@ -1,5 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:tdmc_project/features/layout/presentation/screens/layout_screen.dart';
+import '../../../core/utils/app_navigation.dart';
+import '../../../core/utils/helper/app_dialogs.dart';
+import '../../../core/utils/helper/app_helper.dart';
 import '../data/models/workshops_model.dart';
 import '../data/repos/home_repo.dart';
 part 'home_state.dart';
@@ -28,7 +32,7 @@ class HomeCubit extends Cubit<HomeState> {
   }
 
   int tabBarIndex = 0;
-  onChangeTabBarIndex(int index, String error) {
+  onChangeTabBarIndex(int index, String error){
     tabBarIndex = index;
     searchList = [];
     if (workShopsModel != null) {
@@ -40,6 +44,7 @@ class HomeCubit extends Cubit<HomeState> {
 
   onControllerEmpty(){
     searchList.clear();
+    AppHelper.closeKeyboard();
     emit(Success());
   }
 
@@ -124,8 +129,28 @@ class HomeCubit extends Cubit<HomeState> {
   clearSearch() {
     searchList = [];
     searchController.clear();
+    AppHelper.closeKeyboard();
     if (workShopsModel != null) {
       emit(Success());
     }
+  }
+
+  /// withdraw
+  void withdraw(context,{required String id}) async {
+    emit(Loading());
+    await repo.withdraw(id).then((value) {
+      value.fold((l) {
+        AppDialogs.toast(
+          msg: l.message,
+          state: ToastStates.error,
+        );
+        emit(Error(l.message));
+      }, (r) {
+        AppNavigator.pushAndRemove(
+            screen: LayoutScreen(),
+            context: context);
+        emit(Success());
+      });
+    });
   }
 }

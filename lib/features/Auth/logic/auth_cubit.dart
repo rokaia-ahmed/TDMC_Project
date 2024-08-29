@@ -60,6 +60,7 @@ class AuthCubit extends Cubit<AuthState> {
       });
     }
   }
+
    bool isValidate = true ;
   /// otp
   void otp(context, String phone) async {

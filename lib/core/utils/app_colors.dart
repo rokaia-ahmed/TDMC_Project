@@ -4,6 +4,7 @@ class AppColors {
   static const Color primaryColor = Color(0xff1F319D);
   static const Color secondColor = Color(0xff072AC8);
   static const Color splashColor = Color(0xff041A6F);
+  static const Color lightBlue = Color(0xffE3E7FF);
   static const Color gryTextColor = Color(0xff425462);
   static const Color gryTextColor2 = Color(0xff22292F);
   static const Color hintTextGry = Color(0xffC6C6C6);

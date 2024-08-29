@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:tdmc_project/core/dependancy_injection/injection.dart';
 import 'package:tdmc_project/core/utils/styles.dart';
 import 'package:tdmc_project/core/widgets/custom_buttons.dart';
 import 'package:tdmc_project/core/widgets/custom_error_widget.dart';
+import 'package:tdmc_project/features/home/logic/home_cubit.dart';
 import '../../../../core/utils/app_colors.dart';
 import '../../../../core/utils/app_navigation.dart';
 import '../../../../core/utils/app_size.dart';
@@ -11,17 +14,20 @@ import '../../data/models/workshops_model.dart';
 import '../widgets/home_list_item.dart';
 
 class DetailsScreen extends StatelessWidget {
-  const DetailsScreen({super.key,required this.model});
-  final Result model ;
+  const DetailsScreen({super.key, required this.model});
+
+  final Result model;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
         child: Padding(
-          padding: AppSize.padding(horizontal: 10,top: 20),
+          padding: AppSize.padding(horizontal: 10, top: 20),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
+
               /// top row
               Row(
                 children: [
@@ -30,7 +36,7 @@ class DetailsScreen extends StatelessWidget {
                     width: AppSize.getHorizontalSize(10),
                   ),
                   Text(
-                    '${model.companyName??''} ',
+                    '${model.companyName ?? ''} ',
                     style: Styles.textStyle20w700,
                   ),
                 ],
@@ -41,33 +47,37 @@ class DetailsScreen extends StatelessWidget {
 
               /// title text
               Text(
-                model.topicName??'',
+                model.topicName ?? '',
                 style: Styles.textStyle22w700,
               ),
               SizedBox(
                 height: AppSize.getVerticalSize(10),
               ),
-              if(model.learningOutcome ==null)
-              SizedBox(
-                height: AppSize.getVerticalSize(150),
-              ),
+              if (model.learningOutcome == null)
+                SizedBox(
+                  height: AppSize.getVerticalSize(150),
+                ),
+
               /// over all text
-              (model.learningOutcome !=null)?
-              Text(
-                model.learningOutcome??'',
+              (model.learningOutcome != null)
+                  ? Text(
+                model.learningOutcome ?? '',
                 style: Styles.grayText.copyWith(
                   fontWeight: FontWeight.w400,
                   height: 2.3,
                 ),
-              ):
-                  CustomErrorWidget(
-                      error: 'There\'s no description found for this workshop'),
+              )
+                  : CustomErrorWidget(
+                  error: 'There\'s no description found for this workshop'),
               SizedBox(
                 height: AppSize.getVerticalSize(40),
               ),
-               Spacer(),
+              Spacer(),
+
               /// white card
-              HomeListItem(model: model,),
+              HomeListItem(
+                model: model,
+              ),
               SizedBox(
                 height: AppSize.getVerticalSize(20),
               ),
@@ -81,7 +91,9 @@ class DetailsScreen extends StatelessWidget {
                       child: CustomDefaultButton(
                         onTap: () {
                           AppNavigator.push(
-                              screen: AssignmentsScreen(),
+                              screen: AssignmentsScreen(
+                                model: model,
+                              ),
                               context: context);
                         },
                         text: 'Workshop Assessment',
@@ -93,13 +105,26 @@ class DetailsScreen extends StatelessWidget {
                     SizedBox(
                       width: AppSize.getHorizontalSize(10),
                     ),
-                    Expanded(
-                      child: CustomDefaultButton(
-                        onTap: () {},
-                        text: 'Withdraw',
-                        textStyle: Styles.textStyle12w600.copyWith(
-                          color: AppColors.white,
-                        ),
+
+                    /// withdraw
+                    BlocProvider(
+                      create: (context) => getIt<HomeCubit>(),
+                      child: BlocBuilder<HomeCubit, HomeState>(
+                        builder: (context, state) {
+                          return Expanded(
+                            child: CustomDefaultButton(
+                              loading: state is Loading,
+                              onTap: () {
+                                HomeCubit.get(context).withdraw(context,
+                                    id: model.enrollmentId!);
+                              },
+                              text: 'Withdraw',
+                              textStyle: Styles.textStyle12w600.copyWith(
+                                color: AppColors.white,
+                              ),
+                            ),
+                          );
+                        },
                       ),
                     ),
                   ],
