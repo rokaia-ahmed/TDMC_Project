@@ -87,7 +87,7 @@ class DetailsScreen extends StatelessWidget {
                 child: Row(
                   children: [
                     /// assignment
-                    if(model.showWorkshopAssessment==true)
+                   // if(model.showWorkshopAssessment==true)
                     Expanded(
                       child: CustomDefaultButton(
                         onTap: () {
@@ -103,12 +103,12 @@ class DetailsScreen extends StatelessWidget {
                         ),
                       ),
                     ),
-                    if(model.showWorkshopAssessment==true&&model.canWithdraw==true)
+                  //  if(model.showWorkshopAssessment==true&&model.canWithdraw==true)
                     SizedBox(
                       width: AppSize.getHorizontalSize(10),
                     ),
                     /// withdraw
-                    if(model.canWithdraw==true)
+                   // if(model.canWithdraw==true)
                     BlocProvider(
                       create: (context) => getIt<HomeCubit>(),
                       child: BlocBuilder<HomeCubit, HomeState>(

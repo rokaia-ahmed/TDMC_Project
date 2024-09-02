@@ -19,19 +19,20 @@ class AssignmentsSuccess extends StatelessWidget {
         BackdropFilter(
           filter: ImageFilter.blur(sigmaX: 3, sigmaY: 3,), // Apply blur effect
           child: Container(
-            color: Colors.white.withOpacity(0.3),
+            color: Colors.white.withOpacity(0.4),
           ),
         ),
         Container(
           alignment: Alignment.bottomCenter,
           decoration: BoxDecoration(
             color: Colors.white,
+           // boxShadow: AppShadows.custom,
             borderRadius: BorderRadius.only(
               topLeft:Radius.circular(20),
               topRight:Radius.circular(20),
             ),
           ),
-          height:MediaQuery.of(context).size.height * 0.65,
+          height:MediaQuery.of(context).size.height * 0.63,
           child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
@@ -69,16 +70,16 @@ class AssignmentsSuccess extends StatelessWidget {
                 SizedBox(
                   height: AppSize.getVerticalSize(10),
                 ),
-                Text('The assignment was sent successfully',
+                Text('Thank you\n for sharing your feedback',
                 style: Styles.textStyle24w700.copyWith(
-                  height: 1.3,
+                  height: 1.1,
                 ),
                   textAlign: TextAlign.center,
                 ),
                 SizedBox(
                   height: AppSize.getVerticalSize(5),
                 ),
-                Text('Please check your email to view the results',
+                Text(' your input helps us improve\n future workshops',
                   textAlign: TextAlign.center,
                   style: Styles.grayText.copyWith(
                     fontSize: 14,

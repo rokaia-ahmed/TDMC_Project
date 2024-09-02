@@ -79,7 +79,6 @@ class AssignmentsCubit extends Cubit<AssignmentsState> {
             isScrollControlled: true,
             backgroundColor: Colors.transparent,
             isDismissible:false ,
-            elevation: 1,
             builder: (context)=> AssignmentsSuccess(),
           );
           emit(Success());

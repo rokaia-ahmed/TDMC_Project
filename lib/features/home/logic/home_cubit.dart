@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intl/intl.dart';
 import 'package:tdmc_project/features/layout/presentation/screens/layout_screen.dart';
 import '../../../core/utils/app_navigation.dart';
 import '../../../core/utils/helper/app_dialogs.dart';
@@ -153,4 +154,39 @@ class HomeCubit extends Cubit<HomeState> {
       });
     });
   }
+
+  //////////////////////////////////////////
+  ///calendar search
+  List<Result> searchResults = [];
+  void _searchInList(List<Result> workshops,DateTime selectedDay) {
+    for (Result workshop in workshops) {
+      final start = DateFormat("yyyy-MM-dd").parse(workshop.fromDate!);
+      final end = DateFormat("yyyy-MM-dd").parse(workshop.toDate!);
+
+      // Check if the selected day is within the workshop date range
+      if ((selectedDay.isAfter(start) && selectedDay.isBefore(end.add(Duration(days: 1))))) {
+        searchResults.add(workshop);
+      }
+    }
+  }
+  void searchWorkshopsByDate(DateTime selectedDay,) {
+     searchResults = [];
+   if(workShopsModel !=null){
+     // Search in completed workshops
+     if(workShopsModel!.completedWorkshops.isNotEmpty){
+       _searchInList(workShopsModel!.completedWorkshops,selectedDay);
+     }
+     // Search in enrolled workshops
+     if(workShopsModel!.enrolledWorkshops.isNotEmpty){
+       _searchInList(workShopsModel!.enrolledWorkshops,selectedDay);
+     }
+     // Search in upcoming workshops
+     if(workShopsModel!.upcomingWorkshops.isNotEmpty){
+       _searchInList(workShopsModel!.upcomingWorkshops,selectedDay);
+     }
+     emit(Success());
+   }
+  }
+
+
 }

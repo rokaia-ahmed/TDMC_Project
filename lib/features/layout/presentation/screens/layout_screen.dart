@@ -8,7 +8,6 @@ import '../../../../core/utils/app_colors.dart';
 import '../../../../core/utils/styles.dart';
 import '../../../home/logic/home_cubit.dart';
 import '../../logic/layout_cubit.dart';
-import '../widgets/layout_app_bar.dart';
 
 class LayoutScreen extends StatelessWidget {
   const LayoutScreen({super.key});
@@ -30,17 +29,7 @@ class LayoutScreen extends StatelessWidget {
           return Scaffold(
             resizeToAvoidBottomInset:false,
             body: SafeArea(
-              child: Column(
-                children: [
-
-                  /// top app bar
-                  LayoutAppBar(),
-                  SizedBox(
-                    height: AppSize.getVerticalSize(10),
-                  ),
-                  cubit.Screens[cubit.activeIndex],
-                ],
-              ),
+              child: cubit.Screens[cubit.activeIndex],
             ),
             bottomNavigationBar:
             AnimatedBottomNavigationBar.builder(

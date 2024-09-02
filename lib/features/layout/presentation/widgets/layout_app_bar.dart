@@ -13,37 +13,34 @@ class LayoutAppBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: AppSize.padding(all: 15),
-      child: Row(
-        children: [
-          Text('Hello, ${CacheHelper.getData('userName')}!',
-            style: Styles.textStyle22w700.copyWith(
-              fontWeight: FontWeight.w800
-            ),
+    return Row(
+      children: [
+        Text('Hello, ${CacheHelper.getData('userName')}!',
+          style: Styles.textStyle22w700.copyWith(
+            fontWeight: FontWeight.w800
           ),
-          Spacer(),
-          InkWell(
-            onTap:(){},
-            child: Container(
-              padding: AppSize.padding(
-                  horizontal: 7, vertical: 7),
-              decoration: AppConstants.boxDecoration,
-              child: SvgPicture.asset(AppIcons.notification),
-            ),
+        ),
+        Spacer(),
+        InkWell(
+          onTap:(){},
+          child: Container(
+            padding: AppSize.padding(
+                horizontal: 7, vertical: 7),
+            decoration: AppConstants.boxDecoration,
+            child: SvgPicture.asset(AppIcons.notification),
           ),
-          SizedBox(width: AppSize.getHorizontalSize(15),),
-          InkWell(
-              onTap: () {
-                CacheHelper.removeData('token');
-                CacheHelper.removeData('userName');
-                AppNavigator.pushAndRemove(
-                    screen: SplashScreen(),
-                    context: context);
-              },
-              child: SvgPicture.asset(AppIcons.logout)),
-        ],
-      ),
+        ),
+        SizedBox(width: AppSize.getHorizontalSize(15),),
+        InkWell(
+            onTap: () {
+              CacheHelper.removeData('token');
+              CacheHelper.removeData('userName');
+              AppNavigator.pushAndRemove(
+                  screen: SplashScreen(),
+                  context: context);
+            },
+            child: SvgPicture.asset(AppIcons.logout)),
+      ],
     );
   }
 }
