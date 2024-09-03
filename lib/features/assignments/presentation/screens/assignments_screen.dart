@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tdmc_project/core/dependancy_injection/injection.dart';
 import 'package:tdmc_project/core/utils/app_colors.dart';
-import 'package:tdmc_project/core/utils/helper/app_dialogs.dart';
 import 'package:tdmc_project/core/widgets/custom_buttons.dart';
-import 'package:tdmc_project/features/Assignments/logic/assignments_cubit.dart';
 import '../../../../core/utils/app_size.dart';
 import '../../../../core/widgets/custom_error_widget.dart';
+import '../../../../core/widgets/custom_loading.dart';
 import '../../../home/data/models/workshops_model.dart';
+import '../../logic/assignments_cubit.dart';
 import '../widgets/page_view_item.dart';
 import '../widgets/top_widgets.dart';
 
@@ -51,13 +51,14 @@ class AssignmentsScreen extends StatelessWidget {
                             return PageViewItem(model:
                             cubit.questions[index],
                               numOfQuestion: index+1,
-                              totalNumber: cubit.questions.length,);
+                              totalNumber: cubit.questions.length,
+                              progressCount: cubit.count,);
                           },
                           itemCount: cubit.questions.length,
                         ),
                       ),
                     ] else if (state is Loading) ...[
-                      Center(child: CircularProgressIndicator()),
+                      CustomLoading(),
                     ] else if(state is Error) ...[
                       CustomErrorWidget(error:state.errorMsg),
                     ],
@@ -90,15 +91,16 @@ class AssignmentsScreen extends StatelessWidget {
                               height: AppSize.getVerticalSize(30),
                               width: AppSize.getHorizontalSize(80),
                               onTap:() {
-                                if(cubit.optionsId.length>cubit.currentPage){
-                                  cubit.pageController.nextPage(
-                                      duration: Duration(milliseconds: 300),
-                                      curve: Curves.easeInOut);
-                                }else{
-                                  AppDialogs.toast(msg:'please select option',
-                                      state: ToastStates.error);
-                                }
-                                if(cubit.questions.length==cubit.optionsId.length){
+                                cubit.addMapValueToList();
+
+                                cubit.pageController.nextPage(
+                                    duration: Duration(milliseconds: 300),
+                                    curve: Curves.easeInOut);
+
+                                cubit.addUnansweredToList(cubit.currentPage);
+
+                                if(cubit.questions.length==
+                                    cubit.currentPage+1&& cubit.optionsId.isNotEmpty){
                                   cubit.submitAssignment(
                                       context,
                                       id:model.enrollmentId!,);

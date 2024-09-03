@@ -22,12 +22,7 @@ class OtpScreen extends StatelessWidget {
           child: SingleChildScrollView(
             child: Padding(
               padding: AppSize.padding(all: 10),
-              child: BlocConsumer<AuthCubit,AuthState>(
-                listener:(context, state){
-                  if(state is LoadingOtp ){
-                    AuthCubit.get(context).startCountdown();
-                  }
-                },
+              child: BlocBuilder<AuthCubit,AuthState>(
                 builder: (context, state) {
                   var cubit =AuthCubit.get(context);
                   return Form(
@@ -49,18 +44,18 @@ class OtpScreen extends StatelessWidget {
                         // cubit.count<30&&cubit.count>0
                         /// reset code
                         InkWell(
-                          onTap: (state is CountdownTick)?null:(){
+                          onTap: (cubit.count<=30&&cubit.count>0)?null:(){
                               cubit.resendOtp(context,phone);
                               },
                           child: Padding(
                             padding: AppSize.padding(start: 20),
-                            child: Text('Resend code ${(cubit.count<30&&cubit.count>0)?
+                            child: Text('Resend code ${(cubit.count<=30&&cubit.count>0)?
                             '(00:${cubit.count})':''}',
                               style: Styles.textStyle14w400.copyWith(
                                 decorationColor:AppColors.gryTextColor3 ,
-                                color:(state is CountdownTick)?AppColors.gryTextColor3
+                                color:(cubit.count<=30&&cubit.count>0)?AppColors.gryTextColor3
                                     :AppColors.primaryColor,
-                                decoration:(state is CountdownTick)?
+                                decoration:(cubit.count<=30&&cubit.count>0)?
                                 TextDecoration.underline:null,
                               ),
                             ),

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tdmc_project/core/utils/app_size.dart';
-import 'package:tdmc_project/features/home/presentation/widgets/home_list_item.dart';
 import '../../../../core/utils/app_colors.dart';
 import '../../../../core/utils/styles.dart';
 import '../../../home/logic/home_cubit.dart';
+import 'calendar_item.dart';
 
 class DailyWorkshop extends StatelessWidget {
   const DailyWorkshop({super.key});
@@ -21,7 +21,7 @@ class DailyWorkshop extends StatelessWidget {
                 physics: NeverScrollableScrollPhysics(),
                 shrinkWrap: true,
                 itemBuilder: (context, index) =>
-                    HomeListItem(model: cubit.searchResults[index]),
+                    CalendarItem(model: cubit.searchResults[index]),
                 separatorBuilder: (context, index) =>
                     SizedBox(
                       height: AppSize.getVerticalSize(10),
@@ -31,7 +31,7 @@ class DailyWorkshop extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 SizedBox(
-                  height: AppSize.getVerticalSize(60),
+                  height: AppSize.getVerticalSize(70),
                 ),
                 Center(child: Text('No workshop in this day',
                   style: Styles.textStyle16w700.copyWith(

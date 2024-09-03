@@ -4,6 +4,7 @@ import 'package:tdmc_project/core/utils/app_size.dart';
 import 'package:tdmc_project/features/home/logic/home_cubit.dart';
 import '../../../../core/utils/app_navigation.dart';
 import '../../../../core/widgets/custom_error_widget.dart';
+import '../../../../core/widgets/custom_loading.dart';
 import '../screens/details_screen.dart';
 import 'home_list_item.dart';
 
@@ -16,7 +17,7 @@ class HomeTabsView extends StatelessWidget {
       builder: (context, state) {
        var cubit = HomeCubit.get(context);
         if(state is Loading){
-         return Center(child: CircularProgressIndicator());
+         return CustomLoading();
        }else if(state is Error){
          return CustomErrorWidget(error: state.errorMsg,);
        } else if(state is Success ||state is SearchSuccess){

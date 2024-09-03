@@ -7,8 +7,8 @@ import 'package:tdmc_project/core/utils/app_images.dart';
 import 'package:tdmc_project/core/utils/app_size.dart';
 import 'package:tdmc_project/core/validators/app_validators.dart';
 import 'package:tdmc_project/core/widgets/custom_text_form_field.dart';
-import 'package:tdmc_project/features/Auth/logic/auth_cubit.dart';
 import '../../../../core/widgets/custom_buttons.dart';
+import '../../logic/auth_cubit.dart';
 import '../widgets/country_code.dart';
 import '../widgets/login_top_widgets.dart';
 

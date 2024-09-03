@@ -6,6 +6,7 @@ import 'package:tdmc_project/core/utils/app_radius.dart';
 import 'package:tdmc_project/core/utils/app_size.dart';
 import 'package:tdmc_project/core/utils/styles.dart';
 import 'package:tdmc_project/features/Assignments/logic/assignments_cubit.dart';
+import 'package:tdmc_project/features/Assignments/presentation/widgets/unanswered_questions.dart';
 import '../../data/models/questions_model.dart';
 import 'BuildOptionContainer.dart';
 
@@ -13,10 +14,12 @@ class PageViewItem extends StatelessWidget {
   const PageViewItem(
       {super.key,
       required this.model,
-      required this.numOfQuestion,
-      required this.totalNumber});
+      required this.progressCount,
+      required this.totalNumber,
+        required this.numOfQuestion});
 
   final QuestionsModel model;
+  final int progressCount;
   final int numOfQuestion;
   final int totalNumber;
   @override
@@ -41,7 +44,7 @@ class PageViewItem extends StatelessWidget {
                 ),
               ),
               Text(
-                '${numOfQuestion}/${totalNumber}',
+                '${progressCount}/${totalNumber}',
                 style: Styles.textStyle16w700.copyWith(
                   color: AppColors.primaryColor,
                 ),
@@ -57,7 +60,7 @@ class PageViewItem extends StatelessWidget {
         Padding(
           padding: AppSize.padding(horizontal: 7),
           child: LinearProgressIndicator(
-            value: numOfQuestion / totalNumber,
+            value:  progressCount/ totalNumber,
             minHeight: AppSize.getVerticalSize(25),
             borderRadius: AppRadius.radius10,
             backgroundColor: AppColors.gryColor2.withOpacity(0.6),
@@ -122,20 +125,8 @@ class PageViewItem extends StatelessWidget {
             );
           },
         ),
-        SizedBox(
-          height: AppSize.getVerticalSize(10),
-        ),
-
-        Padding(
-          padding: AppSize.padding(start: 15),
-          child: Text(
-            'Unanswered questions\n'
-            '(Click on the number to go to the question)',
-            style: Styles.textStyle14w400.copyWith(
-              height: 1.2,
-            ),
-          ),
-        ),
+        /// unanswered questions
+        UnansweredQuestions(),
       ],
     );
   }

@@ -1,14 +1,12 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:tdmc_project/features/Auth/data/repos/auth_repo.dart';
 import '../../../core/utils/app_navigation.dart';
 import '../../../core/utils/helper/app_dialogs.dart';
 import '../../../core/utils/helper/app_helper.dart';
 import '../../layout/presentation/screens/layout_screen.dart';
+import '../data/repos/auth_repo.dart';
 import '../presentation/screens/otp_screen.dart';
-
 part 'auth_state.dart';
 
 class AuthCubit extends Cubit<AuthState> {
@@ -109,14 +107,15 @@ class AuthCubit extends Cubit<AuthState> {
   }
   /// stop count
   void stopCountdown() {
-    count = 0 ;
     if (_countdownTimer != null && _countdownTimer!.isActive) {
+      count = 0 ;
       _countdownTimer!.cancel();
-    //  emit(CountdownStopped());
     }
+    emit(Loading());
   }
   /// resend otp
   void resendOtp(context, String phone) async {
+    startCountdown();
     emit(LoadingOtp());
     await repo.resentOtp(phone).then((value) {
       value.fold((l) {

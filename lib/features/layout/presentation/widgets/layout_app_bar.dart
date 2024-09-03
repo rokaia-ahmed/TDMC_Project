@@ -24,13 +24,16 @@ class LayoutAppBar extends StatelessWidget {
         InkWell(
           onTap:(){},
           child: Container(
+            height:AppSize.getVerticalSize(35),
+            width:AppSize.getHorizontalSize(35),
             padding: AppSize.padding(
                 horizontal: 7, vertical: 7),
             decoration: AppConstants.boxDecoration,
-            child: SvgPicture.asset(AppIcons.notification),
+            child: SvgPicture.asset(AppIcons.notification,
+            ),
           ),
         ),
-        SizedBox(width: AppSize.getHorizontalSize(15),),
+        SizedBox(width: AppSize.getHorizontalSize(7),),
         InkWell(
             onTap: () {
               CacheHelper.removeData('token');
@@ -39,7 +42,19 @@ class LayoutAppBar extends StatelessWidget {
                   screen: SplashScreen(),
                   context: context);
             },
-            child: SvgPicture.asset(AppIcons.logout)),
+            child:
+            Container(
+                height:AppSize.getVerticalSize(35),
+                width:AppSize.getHorizontalSize(35),
+                padding: AppSize.padding(
+                    start: 5,end: 5, vertical: 5,),
+                decoration: AppConstants.boxDecoration,
+                child: SvgPicture.asset(AppIcons.logout,
+                /* height: 14,width: 14,
+                  fit: BoxFit.fill,*/
+                ),
+            ),
+        ),
       ],
     );
   }

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../core/utils/app_images.dart';
-import '../../calender/presentation/screens/calender_screen.dart';
+import '../../calendar/presentation/screens/calender_screen.dart';
 import '../../home/presentation/screens/home_screen.dart';
 part 'layout_state.dart';
 

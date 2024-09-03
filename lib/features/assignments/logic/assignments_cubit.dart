@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:tdmc_project/features/Assignments/data/models/submit_assignment.dart';
 import '../../../core/utils/helper/app_dialogs.dart';
 import '../data/models/questions_model.dart';
+import '../data/models/submit_assignment.dart';
 import '../data/repos/assignments_repo.dart';
 import '../presentation/screens/assignments_success.dart';
 part 'assignments_state.dart';
@@ -35,7 +35,9 @@ class AssignmentsCubit extends Cubit<AssignmentsState> {
   List<String> numberingOptions=[
     'A','B','C','D','E','F','G','H','I',
   ];
+  int count = 0 ;
   List<String> optionsId=[];
+  Map<int,String> mapOptions={};
   /// on select option
   onSelectOption(int index1,int index2,String id){
     questions[index1].questionOptions.forEach((e){
@@ -43,17 +45,11 @@ class AssignmentsCubit extends Cubit<AssignmentsState> {
     });
 
     /// add options id when select on it
-    if (index1 < optionsId.length) {
-      optionsId[index1] = id;
-    } else if (index1 == optionsId.length) {
-      optionsId.add(id);
-    } else {
-      print('======= errorrrrrrr');
-      /*optionsId.addAll(List.filled(index1 - optionsId.length, ''));
-      optionsId.add(id);*/
-    }
 
-    print('option id =${optionsId[index1]}');
+    mapOptions[index1]=id;
+    count =mapOptions.values.length;
+
+    removeFromUnanswered(index1);
 
     /// change container color
     questions[index1]
@@ -61,12 +57,34 @@ class AssignmentsCubit extends Cubit<AssignmentsState> {
         .questionOptions[index2].isSelect ;
     emit(Success());
   }
+  addMapValueToList(){
+    List<String> list = mapOptions.values.toList();
+    optionsId = list ;
+    emit(Success());
+  }
+
+  List<int> unansweredList =[];
+  addUnansweredToList(int indexQuestion){
+    if (!mapOptions.containsKey(indexQuestion)) {
+      unansweredList.add(indexQuestion+1);
+    }
+    print('==========${unansweredList}');
+    emit(Success());
+  }
+
+  removeFromUnanswered(int indexQuestion){
+    if(mapOptions.containsKey(indexQuestion)&&
+        unansweredList.contains(indexQuestion+1)){
+      unansweredList.removeAt(indexQuestion);
+    }
+    emit(Success());
+  }
 
   void submitAssignment(context,{required String id}) async {
       emit(Loading());
       await repo.submitAssignment(SubmitAssignment(
           enrolledId: id,
-          optionsId: optionsId)
+          optionsId:optionsId)
       ).then((value) {
         value.fold((l) {
           AppDialogs.toast(

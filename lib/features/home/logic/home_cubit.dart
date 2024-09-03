@@ -147,6 +147,10 @@ class HomeCubit extends Cubit<HomeState> {
         );
         emit(Error(l.message));
       }, (r) {
+        AppDialogs.toast(
+          msg: 'The workshop has been successfully withdrawn',
+          state: ToastStates.success,
+        );
         AppNavigator.pushAndRemove(
             screen: LayoutScreen(),
             context: context);
