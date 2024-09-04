@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:tdmc_project/core/utils/app_colors.dart';
+import 'package:tdmc_project/core/utils/app_navigation.dart';
+import 'package:tdmc_project/core/utils/app_size.dart';
+import 'package:tdmc_project/core/widgets/custom_buttons.dart';
+import 'package:tdmc_project/features/layout/presentation/screens/layout_screen.dart';
 import '../app_constants.dart';
 import '../styles.dart';
 
@@ -39,22 +43,20 @@ class AppDialogs {
   static Widget customDialog(
     context,{
     required String title,
-    required String buttonTitle,
-    bool isAnotherButton = false,
     Function()? onTap,
-    Function()? onTapButton,
     bool? loading,
   }) {
    return AlertDialog(
       actionsAlignment: MainAxisAlignment.center,
       shape: AppConstants.dialogShape,
-      titlePadding: const EdgeInsets.fromLTRB(30, 0, 20, 0),
+      actionsPadding:EdgeInsets.fromLTRB(60, 0,60, 20) ,
+      titlePadding: const EdgeInsets.fromLTRB(30, 0, 20,10),
       title: Text(
         title,
         textAlign: TextAlign.center,
-        style: Styles.textStyle16w400,
+        style: Styles.textStyle18w600,
       ),
-      iconPadding: const EdgeInsets.fromLTRB(10, 10, 20, 0),
+      iconPadding: const EdgeInsets.fromLTRB(15, 15, 20, 10),
       icon: InkWell(
         onTap: () {
           Navigator.pop(context);
@@ -63,11 +65,21 @@ class AppDialogs {
           alignment: Alignment.topLeft,
           child: Icon(
             Icons.close,
-            size: 20,
+            size: 25,
+            color: Colors.black,
           ),
         ),
       ),
-      actions: const [
+      actions:  [
+        CustomDefaultButton(
+            width: AppSize.getHorizontalSize(30),
+            height:AppSize.getVerticalSize(40) ,
+            onTap: (){
+              AppNavigator.pushAndRemove(
+                  screen: LayoutScreen(),
+                  context: context);
+            },
+            text: 'Back to Home'),
       ],
     );
   }

@@ -39,7 +39,7 @@ class HomeRepo{
       if (response.statusCode == 200) {
         return right(true);
       } else {
-        return left(ServerFailure('Error in withdraw'));
+        return left(ServerFailure('there is an error occurred'));
       }
     } catch (e) {
       if (e is DioException) {

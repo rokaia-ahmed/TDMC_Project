@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tdmc_project/core/dependancy_injection/injection.dart';
 import 'package:tdmc_project/core/utils/app_colors.dart';
+import 'package:tdmc_project/core/utils/helper/app_dialogs.dart';
 import 'package:tdmc_project/core/widgets/custom_buttons.dart';
 import '../../../../core/utils/app_size.dart';
 import '../../../../core/widgets/custom_error_widget.dart';
@@ -22,7 +23,8 @@ class AssignmentsScreen extends StatelessWidget {
           padding: AppSize.padding(horizontal: 10,
               vertical: 10),
           child: BlocProvider(
-            create: (context) => getIt<AssignmentsCubit>()..getQuestions(),
+            create: (context) => getIt<AssignmentsCubit>()
+              ..getQuestions(model.id!),
             child: BlocBuilder<AssignmentsCubit, AssignmentsState>(
               builder: (context, state) {
                 var cubit = AssignmentsCubit.get(context);
@@ -97,13 +99,24 @@ class AssignmentsScreen extends StatelessWidget {
                                     duration: Duration(milliseconds: 300),
                                     curve: Curves.easeInOut);
 
-                                cubit.addUnansweredToList(cubit.currentPage);
+                                if( (cubit.unansweredList.length==cubit.questions.length)){
+                                 /* AppDialogs.toast(msg: 'you don\'t answer any questions',
+                                      state: ToastStates.error);*/
+                                  showDialog(context: context,
+                                      builder: (context)=>
+                                          AppDialogs.customDialog(
+                                              context,
+                                              title: 'you don\'t answer any questions'),
+                                  );
 
+                                }else{
+                                  cubit.addUnansweredToList(cubit.currentPage);
+                                }
                                 if(cubit.questions.length==
-                                    cubit.currentPage+1&& cubit.optionsId.isNotEmpty){
+                                    cubit.currentPage+1 &&cubit.optionsId.isNotEmpty){
                                   cubit.submitAssignment(
-                                      context,
-                                      id:model.enrollmentId!,);
+                                    context,
+                                    id:model.enrollmentId!,);
                                 }
                               },
                               text: 'Next'),

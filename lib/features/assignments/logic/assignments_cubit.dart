@@ -19,9 +19,9 @@ class AssignmentsCubit extends Cubit<AssignmentsState> {
 
   /// get questions
    List<QuestionsModel> questions =[];
-  void getQuestions() async {
+  void getQuestions(String id) async {
     emit(Loading());
-    await repo.getAssignments().then((value) {
+    await repo.getAssignments(id).then((value) {
       value.fold((l) {
         debugPrint(l.message);
         emit(Error(l.message));
@@ -65,17 +65,17 @@ class AssignmentsCubit extends Cubit<AssignmentsState> {
 
   List<int> unansweredList =[];
   addUnansweredToList(int indexQuestion){
-    if (!mapOptions.containsKey(indexQuestion)) {
+    if ((!mapOptions.containsKey(indexQuestion))&&
+        !unansweredList.contains(questions.length)) {
       unansweredList.add(indexQuestion+1);
     }
-    print('==========${unansweredList}');
     emit(Success());
   }
 
   removeFromUnanswered(int indexQuestion){
     if(mapOptions.containsKey(indexQuestion)&&
         unansweredList.contains(indexQuestion+1)){
-      unansweredList.removeAt(indexQuestion);
+      unansweredList.remove(indexQuestion+1);
     }
     emit(Success());
   }

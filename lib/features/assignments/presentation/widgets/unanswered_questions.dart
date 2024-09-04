@@ -38,6 +38,7 @@ class UnansweredQuestions extends StatelessWidget {
               ),
               Wrap(
                 alignment: WrapAlignment.end,
+                runSpacing:AppSize.getVerticalSize(10) ,
                 children: cubit.unansweredList.map(
                       (e) =>
                       InkWell(
