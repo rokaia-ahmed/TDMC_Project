@@ -57,6 +57,8 @@
     "please_enter": "Please enter your code within next 5 minutes to avoid being logged out"
   },
   "notifications": {
-    "title": "Notifications"
+    "title": "Notifications",
+    "make_read": "Mark all as read",
+    "you_have": "You have"
   }
 }

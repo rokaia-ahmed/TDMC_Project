@@ -31,7 +31,7 @@ class NotificationListItem extends StatelessWidget {
                 height:1,) ,
               ),
               SizedBox(
-                height: AppSize.getVerticalSize(5),
+                height: AppSize.getVerticalSize(10),
               ),
               Text('Movenpick - Business Email Writing',
               style:Styles.textStyle12w500.copyWith(

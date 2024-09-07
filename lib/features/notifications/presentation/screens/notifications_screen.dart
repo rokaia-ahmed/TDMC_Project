@@ -36,11 +36,10 @@ class NotificationsScreen extends StatelessWidget {
                      elevation: 3,
                      child:Padding(
                        padding: AppSize.padding(
-                         vertical: 7, horizontal: 15),
-                       child: Text('Mark all as read',
-                         style:Styles.textStyle14w600.copyWith(
+                         vertical: 7, horizontal: 17),
+                       child: Text('notifications.make_read'.tr(),
+                         style:Styles.textStyle16w700.copyWith(
                            color: AppColors.primaryColor,
-                           fontWeight: FontWeight.w700,
                          ),
                        ),
                      ),
@@ -50,7 +49,7 @@ class NotificationsScreen extends StatelessWidget {
              ),
              Row(
                children: [
-                 Text('You have',
+                 Text('notifications.you_have'.tr(),
                    style:Styles.textStyle14w400.copyWith(
                      color: AppColors.gryTextColor,
                    ),
@@ -58,7 +57,7 @@ class NotificationsScreen extends StatelessWidget {
                  SizedBox(
                    width: AppSize.getHorizontalSize(5),
                  ),
-                 Text('2 Notifications .',
+                 Text('2 ${'notifications.title'.tr()} .',
                    style:Styles.textStyle14w400.copyWith(
                      color: AppColors.secondColor,
                    ),
