@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tdmc_project/core/utils/app_size.dart';
@@ -28,22 +29,22 @@ class HomeTabsView extends StatelessWidget {
                (cubit.workShopsModel!.enrolledWorkshops.isNotEmpty)?
                BuildListView(list: cubit.searchList.isNotEmpty? cubit.searchList:
                cubit.workShopsModel!.enrolledWorkshops,):
-               CustomError2(error: 'No workshops found'),
+               CustomError2(error: 'home.no_workshops'.tr()),
 
                (cubit.workShopsModel!.completedWorkshops.isNotEmpty)?
                BuildListView(list:cubit.searchList.isNotEmpty? cubit.searchList:
                cubit.workShopsModel!.completedWorkshops,):
-               CustomError2(error: 'No workshops found'),
+               CustomError2(error: 'home.no_workshops'.tr()),
 
                (cubit.workShopsModel!.upcomingWorkshops.isNotEmpty)?
                BuildListView(list:cubit.searchList.isNotEmpty?
                cubit.searchList: cubit.workShopsModel!.upcomingWorkshops,):
-               CustomError2(error: 'No workshops found'),
+               CustomError2(error: 'home.no_workshops'.tr()),
 
                (cubit.workShopsModel!.invitedWorkshops.isNotEmpty)?
                BuildListView(list:cubit.searchList.isNotEmpty?
                cubit.searchList: cubit.workShopsModel!.invitedWorkshops,):
-               CustomError2(error: 'No workshops found'),
+               CustomError2(error: 'home.no_workshops'.tr()),
              ],
            ),
          );

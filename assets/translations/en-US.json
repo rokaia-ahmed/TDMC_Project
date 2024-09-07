@@ -1,0 +1,62 @@
+{
+  "submit": "Submit",
+  "continue": "Continue",
+  "profile": {
+    "languages": "Languages",
+    "full_name": "Full Name",
+    "number": "Phone Number",
+    "email_address": "Email Address",
+    "company": "Company",
+    "arabic": "Arabic"
+  },
+  "layout":{
+    "hello": "Hello",
+    "profile": "Profile",
+    "calendar": "Calendar",
+    "home": "Home"
+  },
+  "home":{
+    "workshops": "Workshops",
+    "search": "Search",
+    "enrolled": "Enrolled",
+    "completed": "Completed",
+    "upcoming": "Upcoming",
+    "invitations": "Invitations",
+    "rest_filter": "Rest Filter",
+    "no_workshops": "No workshops found",
+    "workshop_assessment": "Workshop Assessment",
+    "withdraw": "Withdraw",
+    "no_desc": "There's no description found for this workshop",
+    "no_search":"No search result",
+    "success_withdraw":"The workshop has been successfully withdrawn"
+  },
+  "assignments":{
+    "evaluation":"Evaluation:",
+    "questions":"Questions",
+    "next":"Next",
+    "previous":"Previous",
+    "you_don't":"you don't answer any questions",
+    "thank_you":"Thank you\n for sharing your feedback",
+    "your_input":"your input helps us improve\n future workshops",
+    "unanswered":"Unanswered questions\n(Click on the number to go to the question)",
+    "no_questions":"No Questions in this Workshop",
+    "back":"Back to Home"
+  },
+  "calendar":{
+    "daily_workshop": "DAILY WORKSHOP",
+    "no_workshop": "No workshop in this day",
+    "active": "Active"
+  },
+  "auth": {
+    "code": "Code",
+    "phone": "Phone Number",
+    "resend_otp": "Resend code",
+    "welcome": "Welcome!",
+    "enter": "Enter your login credentials",
+    "enter_code": "Enter code",
+    "please_enter": "Please enter your code within next 5 minutes to avoid being logged out"
+  },
+  "notifications": {
+    "title": "Notifications"
+  }
+}

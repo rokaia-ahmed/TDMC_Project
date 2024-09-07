@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -15,7 +16,7 @@ class LoginTopWidget extends StatelessWidget {
         SizedBox(
           height: AppSize.getVerticalSize(30),
         ),
-        Text('Welcome!',
+        Text('auth.welcome'.tr(),
           style:Styles.textStyle32w700,
         ),
         SizedBox(
@@ -28,7 +29,7 @@ class LoginTopWidget extends StatelessWidget {
         SizedBox(
           height: AppSize.getVerticalSize(40),
         ),
-        Text('Enter your login credentials',
+        Text('auth.enter'.tr(),
           style:Styles.textStyle20w500,
         ),
         SizedBox(

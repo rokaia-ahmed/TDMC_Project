@@ -30,3 +30,22 @@ class CustomLoading2 extends StatelessWidget {
     );
   }
 }
+class CustomLoading3 extends StatelessWidget {
+  const CustomLoading3({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        SizedBox(
+          height: MediaQuery.of(context).size.height*0.17,
+        ),
+        Center(child: CircularProgressIndicator()),
+        SizedBox(
+          height: MediaQuery.of(context).size.height*0.17,
+        ),
+      ],
+    );
+  }
+}

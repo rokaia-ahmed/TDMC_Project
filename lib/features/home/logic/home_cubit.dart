@@ -1,6 +1,6 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:intl/intl.dart';
 import 'package:tdmc_project/features/layout/presentation/screens/layout_screen.dart';
 import '../../../core/utils/app_navigation.dart';
 import '../../../core/utils/helper/app_dialogs.dart';
@@ -73,7 +73,7 @@ class HomeCubit extends Cubit<HomeState> {
         if(isFound==true){
           emit(SearchSuccess());
         }else{
-          emit(SearchError('No search result'));
+          emit(SearchError('home.no_search'.tr()));
         }
       }
       else if (tabBarIndex == 1) {
@@ -89,7 +89,7 @@ class HomeCubit extends Cubit<HomeState> {
         if(isFound==true){
           emit(SearchSuccess());
         }else{
-          emit(SearchError('No search result'));
+          emit(SearchError('home.no_search'.tr()));
         }
       } if(tabBarIndex == 2) {
         workShopsModel!.upcomingWorkshops.forEach((e) {
@@ -104,7 +104,7 @@ class HomeCubit extends Cubit<HomeState> {
         if(isFound==true){
           emit(SearchSuccess());
         }else{
-          emit(SearchError('No search result'));
+          emit(SearchError('home.no_search'.tr()));
         }
       }else {
         workShopsModel!.invitedWorkshops.forEach((e) {
@@ -119,7 +119,7 @@ class HomeCubit extends Cubit<HomeState> {
         if(isFound==true){
           emit(SearchSuccess());
         }else{
-          emit(SearchError('No search result'));
+          emit(SearchError('home.no_search'.tr()));
         }
       }
     } else {
@@ -148,7 +148,7 @@ class HomeCubit extends Cubit<HomeState> {
         emit(Error(l.message));
       }, (r) {
         AppDialogs.toast(
-          msg: 'The workshop has been successfully withdrawn',
+          msg: 'home.success_withdraw'.tr(),
           state: ToastStates.success,
         );
         AppNavigator.pushAndRemove(

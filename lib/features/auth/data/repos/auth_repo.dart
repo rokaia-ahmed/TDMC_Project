@@ -18,7 +18,7 @@ class AuthRepo {
       if (response.statusCode == 200) {
         return right(true);
       } else if (response.statusCode == 400) {
-        return left(Failure('Error in code or phone number'));
+        return left(Failure('Invalid code or phone number'));
       } else {
         return left(ServerFailure.fromResponse(response));
       }

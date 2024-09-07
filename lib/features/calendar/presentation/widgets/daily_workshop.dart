@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tdmc_project/core/utils/app_size.dart';
@@ -33,12 +34,15 @@ class DailyWorkshop extends StatelessWidget {
                 SizedBox(
                   height: AppSize.getVerticalSize(70),
                 ),
-                Center(child: Text('No workshop in this day',
+                Center(child: Text('calendar.no_workshop'.tr(),
                   style: Styles.textStyle16w700.copyWith(
                     color: AppColors.gryTextColor3,
                     letterSpacing: 1.5,
                   ),
                 ),
+                ),
+                SizedBox(
+                  height: AppSize.getVerticalSize(70),
                 ),
               ],
             );

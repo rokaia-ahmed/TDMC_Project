@@ -1,5 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 import '../../../../core/errors/failure.dart';
 import '../../../../core/network/remote/apis/dio_helper.dart';
@@ -16,7 +17,7 @@ class AssignmentsRepo{
           url:'${ApiConstants.questions}$id');
       if(response.statusCode==200){
         if(List.from(response.data).isEmpty){
-          return left(ServerFailure('No Questions in this Workshop'));
+          return left(ServerFailure('assignments.no_questions'.tr()));
         }else{
           List<QuestionsModel> result =[] ;
 

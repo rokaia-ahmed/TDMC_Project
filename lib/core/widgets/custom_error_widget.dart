@@ -50,3 +50,29 @@ class CustomError2 extends StatelessWidget {
     );
   }
 }
+
+class CustomError3 extends StatelessWidget {
+  const CustomError3({super.key, required this.error,});
+  final String error ;
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        SizedBox(
+          height: MediaQuery.of(context).size.height*0.17,
+        ),
+        Center(
+          child: Text(error,
+            style: Styles.textStyle16w700.copyWith(
+              color: AppColors.gryTextColor3,
+            ),
+          ),
+        ),
+        SizedBox(
+          height: MediaQuery.of(context).size.height*0.17,
+        ),
+      ],
+    );
+  }
+}

@@ -1,4 +1,5 @@
 import 'package:country_code_picker/country_code_picker.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tdmc_project/core/utils/app_size.dart';
@@ -35,7 +36,7 @@ class CountryCode extends StatelessWidget {
               ),
             ),
             searchDecoration:InputDecoration(
-              hintText: 'search',
+              hintText: 'home.search'.tr(),
               enabledBorder: defaultBorder,
               focusedBorder: defaultBorder,
               border: defaultBorder

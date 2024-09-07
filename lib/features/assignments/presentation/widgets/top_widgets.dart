@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../core/utils/app_size.dart';
@@ -31,7 +32,7 @@ class TopTitlesWidget extends StatelessWidget {
             height: AppSize.getVerticalSize(10),
           ),
           Text(
-            'Evaluation:',
+            'assignments.evaluation'.tr(),
             style: Styles.textStyle24w700.copyWith(
               fontSize: 25,
             ),

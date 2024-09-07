@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -13,7 +14,7 @@ class HomeFilterRow extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Text('Workshops',
+        Text('home.workshops'.tr(),
           style: Styles.textStyle22w700,
         ),
         BlocBuilder<HomeCubit,HomeState>(
@@ -23,7 +24,7 @@ class HomeFilterRow extends StatelessWidget {
               onTap:(cubit.searchList.isNotEmpty)?() {
                 cubit.clearSearch();
               }:null,
-              child: Text('Rest Filter',
+              child: Text('home.rest_filter'.tr(),
                 style: Styles.textStyle16w600.copyWith(
                   color: (cubit.searchList.isNotEmpty)?
                   AppColors.primaryColor:AppColors.gryTextColor3,

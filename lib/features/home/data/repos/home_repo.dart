@@ -1,5 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 import '../../../../core/errors/failure.dart';
 import '../../../../core/network/remote/apis/dio_helper.dart';
@@ -14,7 +15,7 @@ class HomeRepo{
           url:ApiConstants.workshops);
       if(response.statusCode==200){
         if(response.data['success']==false){
-          return left(ServerFailure('No WorkShops found'));
+          return left(ServerFailure('home.no_workshops'.tr()));
         }else{
           var result = WorkShopsModel.fromJson(response.data);
           return right(result);

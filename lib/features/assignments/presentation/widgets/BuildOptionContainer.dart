@@ -49,9 +49,12 @@ class BuildOptionContainer extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   /// option in en
-                  Text(
-                    model.description ?? '',
-                    style: Styles.textStyle16w400,
+                  Align(
+                    alignment: Alignment.topLeft,
+                    child: Text(
+                      model.description ?? '',
+                      style: Styles.textStyle16w400,
+                    ),
                   ),
                   SizedBox(
                     height: AppSize.getVerticalSize(2),

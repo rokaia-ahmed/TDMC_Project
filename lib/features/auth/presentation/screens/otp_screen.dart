@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tdmc_project/core/utils/app_colors.dart';
@@ -49,7 +50,7 @@ class OtpScreen extends StatelessWidget {
                               },
                           child: Padding(
                             padding: AppSize.padding(start: 20),
-                            child: Text('Resend code ${(cubit.count<=30&&cubit.count>0)?
+                            child: Text('${'auth.resend_otp'.tr()} ${(cubit.count<=30&&cubit.count>0)?
                             '(00:${cubit.count})':''}',
                               style: Styles.textStyle14w400.copyWith(
                                 decorationColor:AppColors.gryTextColor3 ,
@@ -71,7 +72,7 @@ class OtpScreen extends StatelessWidget {
                           onTap: () {
                            cubit.otp(context, phone);
                           },
-                          text: 'Continue',
+                          text: 'continue'.tr(),
                         ),
                       ],
                     ),

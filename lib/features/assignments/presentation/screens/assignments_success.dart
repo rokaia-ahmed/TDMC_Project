@@ -1,4 +1,5 @@
 import 'dart:ui';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:tdmc_project/core/utils/app_colors.dart';
@@ -70,7 +71,7 @@ class AssignmentsSuccess extends StatelessWidget {
                 SizedBox(
                   height: AppSize.getVerticalSize(10),
                 ),
-                Text('Thank you\n for sharing your feedback',
+                Text('assignments.thank_you'.tr(),
                 style: Styles.textStyle24w700.copyWith(
                   height: 1.1,
                 ),
@@ -79,7 +80,7 @@ class AssignmentsSuccess extends StatelessWidget {
                 SizedBox(
                   height: AppSize.getVerticalSize(5),
                 ),
-                Text(' your input helps us improve\n future workshops',
+                Text('assignments.your_input'.tr(),
                   textAlign: TextAlign.center,
                   style: Styles.grayText.copyWith(
                     fontSize: 14,

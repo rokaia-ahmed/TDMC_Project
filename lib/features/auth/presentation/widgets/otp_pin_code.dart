@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
+import 'package:tdmc_project/core/network/local/cache/cache_helper.dart';
 import 'package:tdmc_project/core/utils/app_radius.dart';
 import '../../../../core/utils/app_colors.dart';
 import '../../../../core/utils/app_size.dart';
@@ -25,6 +26,8 @@ class OtpPinCode extends StatelessWidget {
         keyboardType: TextInputType.number,
         enablePinAutofill: true,
         scrollPadding: EdgeInsets.zero,
+        errorTextDirection:CacheHelper.getData('lang')=='en'?
+        TextDirection.ltr:TextDirection.rtl,
         validator:validator ,
         autovalidateMode:AutovalidateMode.disabled,
         animationDuration: const Duration(milliseconds: 300),

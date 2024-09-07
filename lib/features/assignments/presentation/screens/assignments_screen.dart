@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tdmc_project/core/dependancy_injection/injection.dart';
@@ -84,7 +85,7 @@ class AssignmentsScreen extends StatelessWidget {
                                     curve: Curves.easeInOut,
                                   );
                               },
-                              text: 'Previous'),
+                              text: 'assignments.previous'.tr()),
                           SizedBox(
                             width: AppSize.getHorizontalSize(10),
                           ),
@@ -100,13 +101,11 @@ class AssignmentsScreen extends StatelessWidget {
                                     curve: Curves.easeInOut);
 
                                 if( (cubit.unansweredList.length==cubit.questions.length)){
-                                 /* AppDialogs.toast(msg: 'you don\'t answer any questions',
-                                      state: ToastStates.error);*/
                                   showDialog(context: context,
                                       builder: (context)=>
                                           AppDialogs.customDialog(
                                               context,
-                                              title: 'you don\'t answer any questions'),
+                                              title: 'assignments.you_don\'t'.tr()),
                                   );
 
                                 }else{
@@ -119,7 +118,7 @@ class AssignmentsScreen extends StatelessWidget {
                                     id:model.enrollmentId!,);
                                 }
                               },
-                              text: 'Next'),
+                              text: 'assignments.next'.tr()),
                         ],
                       ),
                     ),

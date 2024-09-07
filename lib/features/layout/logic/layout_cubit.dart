@@ -1,8 +1,10 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../core/utils/app_images.dart';
 import '../../calendar/presentation/screens/calender_screen.dart';
 import '../../home/presentation/screens/home_screen.dart';
+import '../../profile/presentation/screens/profile_screen.dart';
 part 'layout_state.dart';
 
 class LayoutCubit extends Cubit<LayoutState> {
@@ -14,15 +16,10 @@ class LayoutCubit extends Cubit<LayoutState> {
     AppIcons.profile,
   ];
 
-  List<String> navbarNames=[
-    'Home',
-    'Calendar',
-    'Profile',
-  ];
   List<Widget> Screens=[
     HomeScreen(),
     CalenderScreen(),
-    Container(),
+    ProfileScreen(),
   ];
   int activeIndex = 0 ;
   changeNavbarIndex(int index){

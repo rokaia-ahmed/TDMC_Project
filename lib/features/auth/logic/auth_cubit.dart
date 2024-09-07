@@ -107,10 +107,8 @@ class AuthCubit extends Cubit<AuthState> {
   }
   /// stop count
   void stopCountdown() {
-    if (_countdownTimer != null && _countdownTimer!.isActive) {
-      count = 0 ;
-      _countdownTimer!.cancel();
-    }
+    count = 0 ;
+    _countdownTimer!.cancel();
     emit(Loading());
   }
   /// resend otp

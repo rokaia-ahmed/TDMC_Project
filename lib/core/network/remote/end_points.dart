@@ -13,6 +13,8 @@ class ApiConstants{
   /// assignments
   static const String questions = 'workshopevaluation/';
   static const String SubmitOption = 'employeeworkshopevaluation/bulk';
+
+  static const String GetProfile = 'auth/getprofile';
 }
 
 

@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:tdmc_project/core/utils/app_colors.dart';
@@ -35,13 +36,13 @@ class OtpTopWidgets extends StatelessWidget {
           SizedBox(
             height: AppSize.getVerticalSize(20),
           ),
-          Text('Enter code',
+          Text('auth.enter_code'.tr(),
             style:Styles.textStyle24w700,
           ),
           SizedBox(
             height: AppSize.getVerticalSize(10),
           ),
-          Text('Please enter your code within next 5 minutes to avoid being logged out',
+          Text('auth.please_enter'.tr(),
             style:Styles.textStyle14w400.copyWith(
               color:AppColors.gryTextColor,
               height: 1.7,

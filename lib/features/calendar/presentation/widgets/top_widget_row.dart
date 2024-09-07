@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:tdmc_project/core/utils/app_size.dart';
 
@@ -13,7 +14,7 @@ class TopWidgetRow extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.end,
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Text('Calendar',
+        Text('layout.calendar'.tr(),
           style: Styles.textStyle20w700.copyWith(
            // height: 0.8,
           ),
@@ -75,7 +76,7 @@ class TopWidgetRow extends StatelessWidget {
                   Expanded(
                     flex: 2,
                     child: Text(
-                      'Completed',
+                      'home.completed'.tr(),
                       textAlign: TextAlign.center,
                       style: Styles.textStyle10w600.copyWith(
                         color: AppColors.gryTextColor3,
@@ -85,7 +86,7 @@ class TopWidgetRow extends StatelessWidget {
                   Expanded(
                     flex: 2,
                     child: Text(
-                      'Active',
+                      'calendar.active'.tr(),
                       textAlign: TextAlign.center,
                       style: Styles.textStyle10w600.copyWith(
                         color: AppColors.gryTextColor3,
@@ -95,7 +96,7 @@ class TopWidgetRow extends StatelessWidget {
                   Expanded(
                     flex: 3,
                     child: Text(
-                      'Upcoming',
+                      'home.upcoming'.tr(),
                       textAlign: TextAlign.center,
                       style: Styles.textStyle10w600.copyWith(
                         color: AppColors.gryTextColor3,

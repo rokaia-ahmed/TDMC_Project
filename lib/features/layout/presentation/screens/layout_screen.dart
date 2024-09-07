@@ -1,4 +1,5 @@
 import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -9,11 +10,16 @@ import '../../../../core/utils/styles.dart';
 import '../../../home/logic/home_cubit.dart';
 import '../../logic/layout_cubit.dart';
 
+
 class LayoutScreen extends StatelessWidget {
   const LayoutScreen({super.key});
-
   @override
   Widget build(BuildContext context) {
+    final List<String> navbarNames=[
+      'layout.home'.tr(),
+      'layout.calendar'.tr(),
+      'layout.profile'.tr(),
+    ];
     return MultiBlocProvider(
       providers: [
         BlocProvider(
@@ -56,7 +62,7 @@ class LayoutScreen extends StatelessWidget {
                     SizedBox(
                       height: AppSize.getVerticalSize(3),
                     ),
-                    Text(cubit.navbarNames[index],
+                    Text(navbarNames[index],
                       style: Styles.textStyle12w700.copyWith(
                         color: isActive ? AppColors.primaryColor : AppColors
                             .gryColor,

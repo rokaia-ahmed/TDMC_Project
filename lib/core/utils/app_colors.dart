@@ -10,6 +10,8 @@ class AppColors {
   static const Color gryTextColor2 = Color(0xff22292F);
   static const Color gryTextColor4 = Color(0xff313238);
   static const Color gryTextColor5 = Color(0xff999BA6);
+  static const Color gryTextColor6 = Color(0xff838FA0);
+  static const Color gryTextColor7 = Color(0xff515978);
   static const Color hintTextGry = Color(0xffC6C6C6);
   static const Color gryColor = Color(0xff888888);
   static const Color lightGry = Color(0xffD5D7E1);
@@ -21,5 +23,6 @@ class AppColors {
   static const Color lightGreen =  Color(0xff05D5AF);
 
   static const Color red =  Color(0xffFF0000);
+  static const Color pink =  Color(0xffC146FF);
   static const Color scaffoldColor = Color(0xffF1F6F9);
 }

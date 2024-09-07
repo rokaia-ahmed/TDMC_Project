@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:tdmc_project/core/utils/app_colors.dart';
@@ -79,7 +80,7 @@ class AppDialogs {
                   screen: LayoutScreen(),
                   context: context);
             },
-            text: 'Back to Home'),
+            text: 'assignments.back'.tr()),
       ],
     );
   }

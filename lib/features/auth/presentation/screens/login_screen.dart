@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -36,7 +37,7 @@ class LoginScreen extends StatelessWidget {
                         /// country code
                         CustomTextField(
                           controller: cubit.cadeCountryController,
-                          hint: 'code',
+                          hint: 'auth.code'.tr(),
                           readOnly: true,
                           keyboardType: TextInputType.phone,
                           codeWidget: const CountryCode(),
@@ -51,7 +52,7 @@ class LoginScreen extends StatelessWidget {
                         /// phone number
                         CustomTextField(
                           controller: cubit.phoneController,
-                          hint: 'Phone Number',
+                          hint: 'auth.phone'.tr(),
                           prefixIcon: AppIcons.phone,
                           keyboardType: TextInputType.number,
                           inputFormatters: <TextInputFormatter>[
@@ -68,7 +69,7 @@ class LoginScreen extends StatelessWidget {
                           onTap: () {
                            cubit.login(context);
                           },
-                          text: 'Continue',
+                          text: 'continue'.tr(),
                         ),
                       ],
                     ),

@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tdmc_project/core/dependancy_injection/injection.dart';
@@ -67,7 +68,7 @@ class DetailsScreen extends StatelessWidget {
                 ),
               )
                   : CustomErrorWidget(
-                  error: 'There\'s no description found for this workshop'),
+                  error: 'home.no_desc'.tr()),
               SizedBox(
                 height: AppSize.getVerticalSize(40),
               ),
@@ -97,7 +98,7 @@ class DetailsScreen extends StatelessWidget {
                               ),
                               context: context);
                         },
-                        text: 'Workshop Assessment',
+                        text: 'home.workshop_assessment'.tr(),
                         textStyle: Styles.textStyle12w600.copyWith(
                           color: Colors.white,
                         ),
@@ -120,7 +121,7 @@ class DetailsScreen extends StatelessWidget {
                                 HomeCubit.get(context).withdraw(context,
                                     id: model.enrollmentId!);
                               },
-                              text: 'Withdraw',
+                              text: 'home.withdraw'.tr(),
                               textStyle: Styles.textStyle12w600.copyWith(
                                 color: Colors.white,
                               ),

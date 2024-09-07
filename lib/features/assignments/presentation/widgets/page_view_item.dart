@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tdmc_project/core/utils/app_colors.dart';
@@ -37,7 +38,7 @@ class PageViewItem extends StatelessWidget {
                 padding: AppSize.padding(vertical: 5, horizontal: 10),
                 decoration: AppConstants.boxDecoration,
                 child: Text(
-                  'Questions $numOfQuestion',
+                  '${'assignments.questions'.tr()} $numOfQuestion',
                   style: Styles.textStyle16w700.copyWith(
                     color: AppColors.primaryColor,
                   ),
@@ -72,11 +73,14 @@ class PageViewItem extends StatelessWidget {
         ),
 
         /// question in english
-        Padding(
-          padding: AppSize.padding(horizontal: 7),
-          child: Text(
-            model.title ?? '',
-            style: Styles.textStyle16w700,
+        Align(
+          alignment: Alignment.topLeft,
+          child: Padding(
+            padding: AppSize.padding(horizontal: 7),
+            child: Text(
+              model.title ?? '',
+              style: Styles.textStyle16w700,
+            ),
           ),
         ),
         SizedBox(
