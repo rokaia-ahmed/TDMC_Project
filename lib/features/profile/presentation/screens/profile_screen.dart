@@ -2,7 +2,6 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import '../../../../core/utils/app_size.dart';
 import '../../../../core/utils/styles.dart';
-import '../../../layout/presentation/widgets/layout_app_bar.dart';
 import '../widgets/profile_data.dart';
 import '../widgets/profile_language.dart';
 
@@ -16,9 +15,8 @@ class ProfileScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            LayoutAppBar(),
             SizedBox(
-              height: AppSize.getVerticalSize(20),
+              height: AppSize.getVerticalSize(10),
             ),
             /// profile Data
             ProfileData(),

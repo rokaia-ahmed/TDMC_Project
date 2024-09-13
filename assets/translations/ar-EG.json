@@ -59,6 +59,16 @@
   "notifications": {
     "title": "الاشعارات",
     "make_read": "تحديد الكل كمقروء",
-    "you_have": "لديك"
+    "you_have": "لديك",
+    "no_invitation": "ليس لديك دعوات",
+    "no_notification": "ليس لديك إشعارات",
+    "you_invited": "لقد تمت دعوتك",
+    "to_enroll": "للتسجيل في إحدى الورش أدناه",
+    "enroll": "سجل",
+    "reject": "رفض"
+  },
+  "error": {
+    "no_internet": "لا يوجد اتصال بالإنترنت",
+    "weak_internet": "لديك اتصال إنترنت ضعيف"
   }
 }

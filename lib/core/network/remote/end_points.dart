@@ -1,5 +1,5 @@
 
-const String baseUrl = 'https://tmcapi-staging.emergingsystems.us/api/';
+const String baseUrl = 'https://app-api-staging.nextlms.us/api/';
 class ApiConstants{
   /// auth
   static const String login = 'auth/login';
@@ -13,8 +13,16 @@ class ApiConstants{
   /// assignments
   static const String questions = 'workshopevaluation/';
   static const String SubmitOption = 'employeeworkshopevaluation/bulk';
-
+   /// profile
   static const String GetProfile = 'auth/getprofile';
+
+  /// notification
+  static const String registerFcm = 'notification';
+  static const String notifications = 'notification';
+  static const String invitations = 'workshopevaluation/';
+  static const String makeRead = 'notification/mark-as-read';
+  static const String makeAllRead = 'notification/mark-as-read';
+  static const String enrollAndReject = 'workshopInvitation/';
 }
 
 

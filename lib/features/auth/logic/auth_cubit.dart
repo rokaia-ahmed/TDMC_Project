@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:tdmc_project/core/network/local/cache/cache_helper.dart';
 import '../../../core/utils/app_navigation.dart';
 import '../../../core/utils/helper/app_dialogs.dart';
 import '../../../core/utils/helper/app_helper.dart';
@@ -75,8 +76,9 @@ class AuthCubit extends Cubit<AuthState> {
         state: ToastStates.error,
       );
       emit(Error());
-    }, (r) {
+    }, (r)async{
       stopCountdown();
+      registerFcm();
       AppNavigator.pushAndRemove(
           screen: const LayoutScreen(), context: context);
       emit(Success());
@@ -124,6 +126,21 @@ class AuthCubit extends Cubit<AuthState> {
       }, (r) {
         /// down count 30 seconds
         startCountdown();
+        emit(Success());
+      });
+    });
+  }
+
+  /// register fcm for notification
+
+  /// resend otp
+  void registerFcm() async {
+    emit(Loading());
+    await repo.registerFcm(CacheHelper.getData('fcm_token'))
+        .then((value) {
+      value.fold((l) {
+        emit(Error());
+      }, (r) {
         emit(Success());
       });
     });

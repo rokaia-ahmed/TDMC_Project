@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tdmc_project/core/utils/app_radius.dart';
+import '../../../../core/network/local/cache/cache_helper.dart';
 import '../../../../core/utils/app_shadow.dart';
 import '../../../../core/utils/app_size.dart';
 import '../../../../core/utils/styles.dart';
@@ -26,11 +27,15 @@ class HomeListItem extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(model.companyName??'',
+                Text(CacheHelper.getData('lang')=='en'?
+                model.companyName??'':model.companyNameAr??'',
                   style:Styles.textStyle16w700,
                 ),
                 SizedBox(height: AppSize.getVerticalSize(5),),
-                Text('${model.venueName??''} - ${model.topicName}',
+                Text('${CacheHelper.getData('lang')=='en'?
+                model.venueName??'':model.venueNameAr??''} - ${
+                    CacheHelper.getData('lang')=='en'?
+                    model.topicName??'':model.topicNameAr??''}',
                 style:Styles.grayText,
                 ),
                 SizedBox(height: AppSize.getVerticalSize(5),),

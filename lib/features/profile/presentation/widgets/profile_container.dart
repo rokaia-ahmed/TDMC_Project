@@ -16,19 +16,22 @@ class ProfileContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+     // height: AppSize.getVerticalSize(58),
       decoration: BoxDecoration(
         borderRadius: AppRadius.radius30,
         color: Colors.white,
       ),
-      padding:AppSize.padding(all: 15),
+      padding:AppSize.padding(horizontal: 15,vertical: 10),
       child:Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           SvgPicture.asset(icon),
           SizedBox(
-            width:AppSize.getHorizontalSize(20),
+            width:AppSize.getHorizontalSize(15),
           ),
           Expanded(
             child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(title,
@@ -37,9 +40,9 @@ class ProfileContainer extends StatelessWidget {
                  // fontWeight: FontWeight.w400,
                 ),
                 ),
-                SizedBox(
+                /*SizedBox(
                   height: AppSize.getVerticalSize(5),
-                ),
+                ),*/
                 Text(subTitle,
                   style: Styles.textStyle15w400.copyWith(
                       color: AppColors.gryTextColor,

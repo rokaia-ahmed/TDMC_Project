@@ -46,7 +46,11 @@ class AuthRepo {
         CacheHelper.saveData('userName', response.data['user']['userName']);
         return right(true);
       } else if (response.statusCode == 400) {
-        return left(Failure('Invalid otp'));
+        if(CacheHelper.getData('lang')=='en'){
+          return left(Failure(response.data['englishMessage']));
+        }else{
+          return left(Failure(response.data['arabicMessage']));
+        }
       } else {
         return left(ServerFailure.fromResponse(response));
       }
@@ -58,7 +62,7 @@ class AuthRepo {
       }
     }
   }
-
+   /// resent otp
   Future<Either<Failure, bool>> resentOtp(String phone) async {
     try {
       Response response = await DioHelper.postData(
@@ -69,7 +73,33 @@ class AuthRepo {
       );
       if (response.statusCode == 200) {
         return right(true);
+      } else if (response.statusCode == 400) {
+        if(CacheHelper.getData('lang')=='en'){
+          return left(Failure(response.data['englishMessage']));
+        }else{
+          return left(Failure(response.data['arabicMessage']));
+        }
+      }else {
+        return left(ServerFailure.fromResponse(response));
+      }
+    } catch (e) {
+      if (e is DioException) {
+        return left(ServerFailure.fromDioError(e));
       } else {
+        return left(ServerFailure(e.toString()));
+      }
+    }
+  }
+
+  /// register fcm
+  Future<Either<Failure, bool>> registerFcm(String fcm) async {
+    try {
+      Response response = await DioHelper.postData(
+        url: '${ApiConstants.registerFcm}?fcmToken=$fcm',
+      );
+      if (response.statusCode == 200) {
+        return right(true);
+      }else {
         return left(ServerFailure.fromResponse(response));
       }
     } catch (e) {

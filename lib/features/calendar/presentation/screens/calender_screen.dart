@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:tdmc_project/core/network/local/cache/cache_helper.dart';
 import 'package:tdmc_project/core/utils/app_colors.dart';
 import 'package:tdmc_project/core/utils/app_size.dart';
 import 'package:tdmc_project/core/utils/styles.dart';
@@ -38,7 +39,8 @@ class CalenderScreen extends StatelessWidget {
             Text('calendar.daily_workshop'.tr(),
               style: Styles.textStyle18w600.copyWith(
                 color: AppColors.gryTextColor4,
-                letterSpacing: 1.5,
+                letterSpacing:CacheHelper.getData('lang')=='en'?
+                1.5:null,
               ),
             ),
             SizedBox(

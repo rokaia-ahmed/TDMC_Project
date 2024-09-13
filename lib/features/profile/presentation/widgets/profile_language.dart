@@ -59,7 +59,7 @@ class ProfileLanguage extends StatelessWidget {
                 height: AppSize.getVerticalSize(40),
               ),
               CustomDefaultButton(
-                  height: AppSize.getVerticalSize(56),
+                  height: AppSize.getVerticalSize(53),
                   onTap: () {
                     cubit.changeLanguage(context, cubit.language,
                         state);

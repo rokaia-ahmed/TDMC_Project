@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:table_calendar/table_calendar.dart';
-
 import '../../../../core/utils/app_colors.dart';
 import '../../../../core/utils/styles.dart';
 import '../../../home/data/models/workshops_model.dart';
@@ -35,6 +34,7 @@ class _CalendarState extends State<Calendar> {
       focusedDay: _focusedDay,
       firstDay: DateTime(2023, 1, 1),
       lastDay: DateTime(2030, 12, 30),
+      locale:'en_US',
       selectedDayPredicate: (day) {
         return isSameDay(_selectedDay, day);
       },
@@ -55,8 +55,8 @@ class _CalendarState extends State<Calendar> {
         defaultBuilder: (context, day, _) {
           if(cubit.workShopsModel?.completedWorkshops.isNotEmpty??false){
             for(Result  d  in cubit.workShopsModel!.completedWorkshops){
-              final start=DateFormat("yyyy-MM-dd").parse(d.fromDate!);
-              final end=DateFormat("yyyy-MM-dd").parse(d.toDate!);
+              final start=DateFormat("yyyy-MM-dd",'en_US').parse(d.fromDate!);
+              final end=DateFormat("yyyy-MM-dd",'en_US').parse(d.toDate!);
               // day.isAfter(start.subtract(Duration(days: 1))) && day.isBefore(end.add(Duration(days: 1)))
               if ((day.isAfter(start) && day.isBefore(end.add(Duration(days: 1))))) {
                 return BuildRangeCell(
@@ -69,8 +69,8 @@ class _CalendarState extends State<Calendar> {
           }
           if(cubit.workShopsModel?.enrolledWorkshops.isNotEmpty??false){
             for(Result  d  in cubit.workShopsModel!.enrolledWorkshops){
-              final start=DateFormat("yyyy-MM-dd").parse(d.fromDate!);
-              final end=DateFormat("yyyy-MM-dd").parse(d.toDate!);
+              final start=DateFormat("yyyy-MM-dd",'en_US').parse(d.fromDate!);
+              final end=DateFormat("yyyy-MM-dd",'en_US').parse(d.toDate!);
               if ((day.isAfter(start) && day.isBefore(end.add(Duration(days: 1))))) {
                 return BuildRangeCell(
                   day: day,
@@ -83,8 +83,8 @@ class _CalendarState extends State<Calendar> {
 
           if(cubit.workShopsModel?.upcomingWorkshops.isNotEmpty??false){
             for(Result  d  in cubit.workShopsModel!.upcomingWorkshops){
-              final start=DateFormat("yyyy-MM-dd").parse(d.fromDate!);
-              final end=DateFormat("yyyy-MM-dd").parse(d.toDate!);
+              final start=DateFormat("yyyy-MM-dd",'en_US').parse(d.fromDate!);
+              final end=DateFormat("yyyy-MM-dd",'en_US').parse(d.toDate!);
               if ((day.isAfter(start) && day.isBefore(end.add(Duration(days: 1))))) {
                 BuildRangeCell(
                   day: day,

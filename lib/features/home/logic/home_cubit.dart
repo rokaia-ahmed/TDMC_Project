@@ -164,8 +164,8 @@ class HomeCubit extends Cubit<HomeState> {
   List<Result> searchResults = [];
   void _searchInList(List<Result> workshops,DateTime selectedDay) {
     for (Result workshop in workshops) {
-      final start = DateFormat("yyyy-MM-dd").parse(workshop.fromDate!);
-      final end = DateFormat("yyyy-MM-dd").parse(workshop.toDate!);
+      final start = DateFormat("yyyy-MM-dd",'en_US').parse(workshop.fromDate!);
+      final end = DateFormat("yyyy-MM-dd",'en_US').parse(workshop.toDate!);
 
       // Check if the selected day is within the workshop date range
       if ((selectedDay.isAfter(start) && selectedDay.isBefore(end.add(Duration(days: 1))))) {
@@ -173,6 +173,7 @@ class HomeCubit extends Cubit<HomeState> {
       }
     }
   }
+
   void searchWorkshopsByDate(DateTime selectedDay,) {
      searchResults = [];
    if(workShopsModel !=null){

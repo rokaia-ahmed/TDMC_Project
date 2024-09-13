@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:easy_localization/easy_localization.dart';
 
  class Failure{
   final String message ;
@@ -10,7 +11,7 @@ class ServerFailure extends Failure{
   factory ServerFailure.fromDioError(DioException e){
     switch(e.type) {
       case DioExceptionType.connectionTimeout:
-       return ServerFailure('You hove weak internet');
+       return ServerFailure('error.weak_internet'.tr());
       case DioExceptionType.sendTimeout:
         return ServerFailure('Send timeout with api server');
       case DioExceptionType.receiveTimeout:
@@ -22,7 +23,7 @@ class ServerFailure extends Failure{
       case DioExceptionType.cancel:
         return ServerFailure('Request to api server was canceled');
       case DioExceptionType.connectionError:
-        return ServerFailure('No internet connection');
+        return ServerFailure('error.no_internet'.tr());
       case DioExceptionType.unknown:
         return ServerFailure('Opps There was an error, please try again');
     }

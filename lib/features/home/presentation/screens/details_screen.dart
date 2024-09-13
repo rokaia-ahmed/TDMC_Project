@@ -6,6 +6,7 @@ import 'package:tdmc_project/core/utils/styles.dart';
 import 'package:tdmc_project/core/widgets/custom_buttons.dart';
 import 'package:tdmc_project/core/widgets/custom_error_widget.dart';
 import 'package:tdmc_project/features/home/logic/home_cubit.dart';
+import '../../../../core/network/local/cache/cache_helper.dart';
 import '../../../../core/utils/app_navigation.dart';
 import '../../../../core/utils/app_size.dart';
 import '../../../../core/widgets/custom_arrow_back.dart';
@@ -36,7 +37,8 @@ class DetailsScreen extends StatelessWidget {
                     width: AppSize.getHorizontalSize(10),
                   ),
                   Text(
-                    '${model.companyName ?? ''} ',
+                    '${CacheHelper.getData('lang')=='en'?
+                    model.companyName??'':model.companyNameAr??''} ',
                     style: Styles.textStyle20w700,
                   ),
                 ],
@@ -47,7 +49,8 @@ class DetailsScreen extends StatelessWidget {
 
               /// title text
               Text(
-                model.topicName ?? '',
+                CacheHelper.getData('lang')=='en'?
+                model.topicName ?? '':model.topicNameAr??'',
                 style: Styles.textStyle22w700,
               ),
               SizedBox(
@@ -59,16 +62,29 @@ class DetailsScreen extends StatelessWidget {
                 ),
 
               /// over all text
-              (model.learningOutcome != null)
-                  ? Text(
-                model.learningOutcome ?? '',
-                style: Styles.grayText.copyWith(
-                  fontWeight: FontWeight.w400,
-                  height: 2.3,
-                ),
-              )
-                  : CustomErrorWidget(
-                  error: 'home.no_desc'.tr()),
+              if(CacheHelper.getData('lang')=='en')...[
+                (model.learningOutcome != null)
+                    ? Text(
+                  model.learningOutcome ?? '',
+                  style: Styles.grayText.copyWith(
+                    fontWeight: FontWeight.w400,
+                    height: 2.3,
+                  ),
+                )
+                    : CustomErrorWidget(
+                    error: 'home.no_desc'.tr()),
+              ]else...[
+                (model.learningOutcomeAr != null)
+                    ? Text(
+                  model.learningOutcomeAr ?? '',
+                  style: Styles.grayText.copyWith(
+                    fontWeight: FontWeight.w400,
+                    height: 2.3,
+                  ),
+                )
+                    : CustomErrorWidget(
+                    error: 'home.no_desc'.tr()),
+              ],
               SizedBox(
                 height: AppSize.getVerticalSize(40),
               ),

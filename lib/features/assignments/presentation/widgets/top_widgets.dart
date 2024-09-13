@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
+import '../../../../core/network/local/cache/cache_helper.dart';
 import '../../../../core/utils/app_size.dart';
 import '../../../../core/utils/styles.dart';
 import '../../../../core/widgets/custom_arrow_back.dart';
@@ -23,7 +24,8 @@ class TopTitlesWidget extends StatelessWidget {
                 width: AppSize.getHorizontalSize(10),
               ),
               Text(
-                model.companyName??'',
+                CacheHelper.getData('lang')=='en'?
+                model.companyName??'':model.companyNameAr??'',
                 style: Styles.textStyle28w700,
               ),
             ],
@@ -41,7 +43,8 @@ class TopTitlesWidget extends StatelessWidget {
             height: AppSize.getVerticalSize(9),
           ),
           Text(
-            model.topicName??'',
+            CacheHelper.getData('lang')=='en'?
+            model.topicName??'':model.topicNameAr??'',
             style: Styles.textStyle18w700,
           ),
           SizedBox(

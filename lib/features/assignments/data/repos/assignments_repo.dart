@@ -16,12 +16,12 @@ class AssignmentsRepo{
       Response response =  await DioHelper.getData(
           url:'${ApiConstants.questions}$id');
       if(response.statusCode==200){
-        if(List.from(response.data).isEmpty){
+        if(List.from(response.data['workshopEvaluationQuestions']).isEmpty){
           return left(ServerFailure('assignments.no_questions'.tr()));
         }else{
           List<QuestionsModel> result =[] ;
 
-          List.from(response.data).forEach((item){
+          List.from(response.data['workshopEvaluationQuestions']).forEach((item){
             result.add(QuestionsModel.fromJson(item));
           });
           return right(result);

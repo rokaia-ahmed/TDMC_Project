@@ -15,6 +15,7 @@ class CustomErrorWidget extends StatelessWidget {
           Align(
               alignment: Alignment.center,
               child: Text(error,
+                textAlign: TextAlign.center,
                 style: Styles.textStyle16w700.copyWith(
                   color: AppColors.gryTextColor3,
                 ),
@@ -40,6 +41,7 @@ class CustomError2 extends StatelessWidget {
         Align(
           alignment: Alignment.center,
           child: Text(error,
+            textAlign: TextAlign.center,
             style: Styles.textStyle16w700.copyWith(
               color: AppColors.gryTextColor3,
             ),
@@ -58,12 +60,14 @@ class CustomError3 extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         SizedBox(
           height: MediaQuery.of(context).size.height*0.17,
         ),
         Center(
           child: Text(error,
+            textAlign: TextAlign.center,
             style: Styles.textStyle16w700.copyWith(
               color: AppColors.gryTextColor3,
             ),

@@ -59,6 +59,16 @@
   "notifications": {
     "title": "Notifications",
     "make_read": "Mark all as read",
-    "you_have": "You have"
+    "you_have": "You have",
+    "no_invitation": "you not have invitations",
+    "no_notification": "you not have notifications",
+    "you_invited": "You have been invited",
+    "to_enroll": "to enroll in one of the workshops below",
+    "enroll": "Enroll",
+    "reject": "Reject"
+  },
+  "error":{
+    "no_internet": "No internet connection",
+    "weak_internet": "You hove weak internet"
   }
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:table_calendar/table_calendar.dart';
+import 'package:tdmc_project/core/network/local/cache/cache_helper.dart';
 import '../../../../core/utils/app_size.dart';
 
 class BuildRangeCell extends StatelessWidget {
@@ -23,8 +24,12 @@ class BuildRangeCell extends StatelessWidget {
       decoration: BoxDecoration(
         color: color.withOpacity(0.7),
         borderRadius: BorderRadius.horizontal(
-          left: isStart ? Radius.circular(15) : Radius.zero,
-          right: isEnd ? Radius.circular(15) : Radius.zero,
+          left: (CacheHelper.getData('lang')=='en')?
+          isStart? Radius.circular(15) : Radius.zero:
+          isEnd? Radius.circular(15):Radius.zero,
+          right: (CacheHelper.getData('lang')=='en')?
+          isEnd? Radius.circular(15) : Radius.zero :
+          isStart? Radius.circular(15):Radius.zero,
         ),
       ),
       // margin: EdgeInsets.all(4.0),

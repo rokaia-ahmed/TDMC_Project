@@ -1,4 +1,4 @@
-package com.example.tdmc_project
+package com.tdmc.emerging
 
 import io.flutter.embedding.android.FlutterActivity
 

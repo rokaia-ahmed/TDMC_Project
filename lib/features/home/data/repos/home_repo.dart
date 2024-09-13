@@ -20,7 +20,10 @@ class HomeRepo{
           var result = WorkShopsModel.fromJson(response.data);
           return right(result);
         }
-      }else{
+      } else if(response.statusCode==400){
+        return left(ServerFailure('Something wrong'));
+      }
+      else{
         return left(ServerFailure.fromResponse(response));
       }
     }catch(e){

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "44043735913",
+    "project_id": "tdmc-5d126",
+    "storage_bucket": "tdmc-5d126.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:44043735913:android:19e778be5a1dc5d6bce3f8",
+        "android_client_info": {
+          "package_name": "com.tdmc.emerging"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBuGQLReQbS-aDx3M3qGxOg2leVCERLjM0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

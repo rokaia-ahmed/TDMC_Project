@@ -2,12 +2,14 @@ import 'package:get_it/get_it.dart';
 import 'package:tdmc_project/features/home/data/repos/home_repo.dart';
 import 'package:tdmc_project/features/home/logic/home_cubit.dart';
 import 'package:tdmc_project/features/layout/logic/layout_cubit.dart';
+import 'package:tdmc_project/features/notifications/logic/notification_cubit.dart';
 import 'package:tdmc_project/features/profile/data/repos/profile_repo.dart';
 import 'package:tdmc_project/features/profile/logic/profile_cubit.dart';
 import '../../features/Assignments/data/repos/assignments_repo.dart';
 import '../../features/Assignments/logic/assignments_cubit.dart';
 import '../../features/Auth/data/repos/auth_repo.dart';
 import '../../features/Auth/logic/auth_cubit.dart';
+import '../../features/notifications/data/repos/notification_repo.dart';
 
 
 final GetIt getIt = GetIt.instance;
@@ -32,5 +34,9 @@ class GetItService{
      // profile
      getIt.registerLazySingleton<ProfileRepo>(()=>ProfileRepo());
      getIt.registerFactory<ProfileCubit>(()=>ProfileCubit(getIt()));
+
+     // notification
+     getIt.registerLazySingleton<NotificationRepo>(()=>NotificationRepo());
+     getIt.registerFactory<NotificationCubit>(()=>NotificationCubit(getIt()));
  }
 }

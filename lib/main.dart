@@ -1,5 +1,6 @@
 import 'package:device_preview/device_preview.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -9,11 +10,13 @@ import 'package:tdmc_project/features/profile/logic/profile_cubit.dart';
 import 'core/dependancy_injection/injection.dart';
 import 'core/network/local/cache/cache_helper.dart';
 import 'core/network/remote/apis/dio_helper.dart';
+import 'core/network/remote/firebase/firebase_messaging.dart';
 import 'core/utils/app_colors.dart';
 import 'core/utils/app_locales.dart';
 import 'core/utils/bloc_observer.dart';
 import 'features/splash/presentation/splash_screen.dart';
 
+var navigatorKey = GlobalKey<NavigatorState>();
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
@@ -22,6 +25,20 @@ void main() async {
 
   /// screen util
   await ScreenUtil.ensureScreenSize();
+
+  /// Firebase
+  await Firebase.initializeApp(
+      options: const FirebaseOptions(
+        apiKey: 'AIzaSyBuGQLReQbS-aDx3M3qGxOg2leVCERLjM0',
+        appId: '1:44043735913:android:19e778be5a1dc5d6bce3f8',
+        messagingSenderId: '44043735913',
+        projectId: 'tdmc-5d126',
+        storageBucket: 'tdmc-5d126.appspot.com',
+      )
+  );
+
+  await FirebaseNotifications.init();
+
 
   /// GET IT
   GetItService.setupGitIt();
