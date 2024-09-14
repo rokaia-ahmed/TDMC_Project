@@ -34,7 +34,7 @@ void main() async {
         messagingSenderId: '44043735913',
         projectId: 'tdmc-5d126',
         storageBucket: 'tdmc-5d126.appspot.com',
-      )
+      ),
   );
 
   await FirebaseNotifications.init();
@@ -99,6 +99,7 @@ class MyApp extends StatelessWidget {
             useMaterial3: true,
             fontFamily: 'Inter',
           ),
+          navigatorKey:navigatorKey,
           home: const SplashScreen(),
         ),
       ),

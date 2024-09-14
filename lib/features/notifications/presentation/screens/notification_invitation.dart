@@ -5,17 +5,23 @@ import 'package:tdmc_project/core/dependancy_injection/injection.dart';
 import 'package:tdmc_project/core/widgets/custom_error_widget.dart';
 import 'package:tdmc_project/core/widgets/custom_loading.dart';
 import 'package:tdmc_project/features/notifications/logic/notification_cubit.dart';
+import '../../../../core/utils/app_navigation.dart';
 import '../../../../core/utils/app_size.dart';
+import '../../logic/notification_state.dart';
 import '../widgets/invitation_item.dart';
 import '../widgets/invitations_container.dart';
+import 'invitation_details.dart';
 
 class NotificationInvitation extends StatelessWidget {
-  const NotificationInvitation({super.key, required this.id});
-  final String id;
+  const NotificationInvitation({super.key,
+    required this.entityId,
+    required this.notificationId});
+  final String entityId;
+  final String notificationId;
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => getIt<NotificationCubit>()..getInvitations(id),
+      create: (context) => getIt<NotificationCubit>()..getInvitations(entityId),
       child: Scaffold(
         body: SafeArea(
           child: Column(
@@ -39,7 +45,16 @@ class NotificationInvitation extends StatelessWidget {
                             itemBuilder: (context, index) =>
                                 InvitationItem(
                                     model:cubit.invitations[index],
-                                  notificationId:id ),
+                                   onTap: (){
+                                     AppNavigator.push(
+                                         screen:
+                                         InvitationDetails(
+                                             entityId: entityId,
+                                             notificationId:notificationId,
+                                             type: 5),
+                                         context: context);
+                                   },
+                                ),
                             separatorBuilder: (context, index) => SizedBox(
                               height: AppSize.getVerticalSize(10),
                             ),

@@ -18,7 +18,8 @@ class AssignmentsCubit extends Cubit<AssignmentsState> {
   //currentPage= pageController.page!.round() ;
 
   /// get questions
-   List<QuestionsModel> questions =[];
+ AssignmentsModel? assignmentsModel ;
+  List<QuestionsModel> questions =[] ;
   void getQuestions(String id) async {
     emit(Loading());
     await repo.getAssignments(id).then((value) {
@@ -26,7 +27,8 @@ class AssignmentsCubit extends Cubit<AssignmentsState> {
         debugPrint(l.message);
         emit(Error(l.message));
       }, (r) {
-        questions = r;
+        assignmentsModel = r;
+        questions = assignmentsModel!.questionsList! ;
         emit(Success());
       });
     });

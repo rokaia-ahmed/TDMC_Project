@@ -66,6 +66,7 @@ class FirebaseNotifications {
         if (message.notification != null) {
           await LocalNotificationService.createNotification(message);
           backgroundHandler(message);
+          print('this from background ==========${message.data}');
         }
       },
     );
@@ -75,6 +76,7 @@ class FirebaseNotifications {
       (RemoteMessage message) async {
         if (message.notification != null) {
           await LocalNotificationService.createNotification(message);
+          print('this from foreground ========== ${message.data}');
         }
       },
     );

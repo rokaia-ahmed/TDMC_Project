@@ -8,14 +8,14 @@ import 'package:tdmc_project/core/widgets/custom_buttons.dart';
 import '../../../../core/utils/app_size.dart';
 import '../../../../core/widgets/custom_error_widget.dart';
 import '../../../../core/widgets/custom_loading.dart';
-import '../../../home/data/models/workshops_model.dart';
 import '../../logic/assignments_cubit.dart';
 import '../widgets/page_view_item.dart';
 import '../widgets/top_widgets.dart';
 
 class AssignmentsScreen extends StatelessWidget {
-  const AssignmentsScreen({super.key, required this.model});
-  final Result model;
+  const AssignmentsScreen({super.key,
+    required this.workshopId});
+  final String workshopId;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,24 +25,23 @@ class AssignmentsScreen extends StatelessWidget {
               vertical: 10),
           child: BlocProvider(
             create: (context) => getIt<AssignmentsCubit>()
-              ..getQuestions(model.id!),
+              ..getQuestions(workshopId),
             child: BlocBuilder<AssignmentsCubit, AssignmentsState>(
               builder: (context, state) {
                 var cubit = AssignmentsCubit.get(context);
                 return Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    /// top tiles
-                    TopTitlesWidget(
-                      model: model,
-                    ),
-                    if(state is !Error)
-                    SizedBox(
-                      height: AppSize.getVerticalSize(20),
-                    ),
-                    /// page view
-
                     if (state is Success) ...[
+                      /// top tiles
+                      TopTitlesWidget(
+                        model: cubit.assignmentsModel!,
+                      ),
+                        SizedBox(
+                          height: AppSize.getVerticalSize(20),
+                        ),
+                      /// page view
+                      if(cubit.questions.isNotEmpty)
                       Expanded(
                         child: PageView.builder(
                           physics: NeverScrollableScrollPhysics(),
@@ -60,6 +59,8 @@ class AssignmentsScreen extends StatelessWidget {
                           itemCount: cubit.questions.length,
                         ),
                       ),
+                      if(cubit.questions.isEmpty)
+                      CustomErrorWidget(error:'assignments.no_questions'.tr()),
                     ] else if (state is Loading) ...[
                       CustomLoading(),
                     ] else if(state is Error) ...[
@@ -67,7 +68,7 @@ class AssignmentsScreen extends StatelessWidget {
                     ],
 
                     /// buttons row
-                    if(state is Success)
+                    if(state is Success && cubit.questions.isNotEmpty)
                     Padding(
                       padding:AppSize.padding(horizontal: 7),
                       child: Row(
@@ -113,9 +114,9 @@ class AssignmentsScreen extends StatelessWidget {
                                 }
                                 if(cubit.questions.length==
                                     cubit.currentPage+1 &&cubit.optionsId.isNotEmpty){
-                                  cubit.submitAssignment(
+                                  /*cubit.submitAssignment(
                                     context,
-                                    id:model.enrollmentId!,);
+                                    id:model.enrollmentId!,);*/
                                 }
                               },
                               text: 'assignments.next'.tr()),

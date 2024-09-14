@@ -5,8 +5,7 @@ import 'package:tdmc_project/core/utils/app_size.dart';
 import 'package:tdmc_project/core/widgets/custom_error_widget.dart';
 import 'package:tdmc_project/core/widgets/custom_loading.dart';
 import 'package:tdmc_project/features/notifications/logic/notification_cubit.dart';
-import '../../../../core/utils/app_navigation.dart';
-import '../screens/notification_invitation.dart';
+import '../../logic/notification_state.dart';
 import 'notification_list_item.dart';
 
 class NotificationList extends StatelessWidget {
@@ -28,16 +27,9 @@ class NotificationList extends StatelessWidget {
                       NotificationListItem(
                         model: cubit.notification[index],
                         onTap: () {
-                       cubit.makeRead(
-                           cubit.notification[index].id!,index);
-                        if(cubit.notification[index].type==5){
-                          AppNavigator.push(
-                              screen: NotificationInvitation(id:
-                             // '72BA4502-9DAB-4DAD-98AE-C0D8330E1F2C'
-                               cubit.notification[index].entityId! ,
-                              ),
-                              context: context);
-                        }
+                          cubit.whenNavigate(
+                              context,
+                              index: index);
                       },
                       ),
                   separatorBuilder: (context, index) =>

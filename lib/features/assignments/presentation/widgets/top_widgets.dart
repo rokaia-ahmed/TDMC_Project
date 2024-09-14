@@ -1,15 +1,14 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-
 import '../../../../core/network/local/cache/cache_helper.dart';
 import '../../../../core/utils/app_size.dart';
 import '../../../../core/utils/styles.dart';
 import '../../../../core/widgets/custom_arrow_back.dart';
-import '../../../home/data/models/workshops_model.dart';
+import '../../data/models/questions_model.dart';
 
 class TopTitlesWidget extends StatelessWidget {
   const TopTitlesWidget({super.key, required this.model});
- final  Result model ;
+ final  AssignmentsModel model ;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -25,7 +24,7 @@ class TopTitlesWidget extends StatelessWidget {
               ),
               Text(
                 CacheHelper.getData('lang')=='en'?
-                model.companyName??'':model.companyNameAr??'',
+                model.company??'':model.companyAr??'',
                 style: Styles.textStyle28w700,
               ),
             ],
@@ -44,7 +43,7 @@ class TopTitlesWidget extends StatelessWidget {
           ),
           Text(
             CacheHelper.getData('lang')=='en'?
-            model.topicName??'':model.topicNameAr??'',
+            model.workshopTitle??'':model.workshopTitleAr??'',
             style: Styles.textStyle18w700,
           ),
           SizedBox(
@@ -54,7 +53,7 @@ class TopTitlesWidget extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                model.fromDate??'',
+                model.dateFrom??'',
                 style: Styles.textStyle14w400,
               ),
               Text(

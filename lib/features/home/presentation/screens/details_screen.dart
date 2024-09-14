@@ -110,7 +110,7 @@ class DetailsScreen extends StatelessWidget {
                         onTap: () {
                           AppNavigator.push(
                               screen: AssignmentsScreen(
-                                model: model,
+                                workshopId: model.id!,
                               ),
                               context: context);
                         },

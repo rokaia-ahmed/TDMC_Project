@@ -1,11 +1,12 @@
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:tdmc_project/features/notifications/data/models/notification_model.dart';
-
 import '../../../../core/errors/failure.dart';
 import '../../../../core/network/remote/apis/dio_helper.dart';
 import '../../../../core/network/remote/end_points.dart';
+import '../models/details_check_model.dart';
 import '../models/enrollAndRejectBody.dart';
+import '../models/invitations_details_model.dart';
 import '../models/invitations_model.dart';
 
 class NotificationRepo{
@@ -128,5 +129,53 @@ class NotificationRepo{
         return left(ServerFailure(e.toString()));
       }
     }
+  }
+
+  /// get Invitations details
+  Future<Either<Failure,InvitationsDetailsModel>>
+  getInvitationsDetails(String id)async{
+    try{
+      Response response =  await DioHelper.getData(
+          url:'workshop/$id');
+      if(response.statusCode==200){
+        var result = InvitationsDetailsModel.fromJson(
+            response.data['workshopDetails'][0]);
+        return right(result) ;
+      } else{
+        return left(ServerFailure.fromResponse(response));
+      }
+    }catch(e){
+      if(e is DioException){
+        return left(ServerFailure.fromDioError(e));
+      }else{
+        return left(ServerFailure(e.toString()));
+      }
+    }
+
+
+  }
+
+  /// get Invitations details if work
+  Future<Either<Failure,DetailsCheckModel>>
+  getInvitationsDetailsIfWork(String id)async{
+    try{
+      Response response =  await DioHelper.getData(
+          url:'workshopInvitation/$id');
+      if(response.statusCode==200){
+        var result = DetailsCheckModel.fromJson(
+            response.data);
+        return right(result) ;
+      } else{
+        return left(ServerFailure.fromResponse(response));
+      }
+    }catch(e){
+      if(e is DioException){
+        return left(ServerFailure.fromDioError(e));
+      }else{
+        return left(ServerFailure(e.toString()));
+      }
+    }
+
+
   }
 }

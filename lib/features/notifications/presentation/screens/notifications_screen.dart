@@ -7,6 +7,7 @@ import 'package:tdmc_project/core/utils/app_size.dart';
 import 'package:tdmc_project/core/utils/styles.dart';
 import 'package:tdmc_project/core/widgets/custom_arrow_back.dart';
 import 'package:tdmc_project/features/notifications/logic/notification_cubit.dart';
+import '../../logic/notification_state.dart';
 import '../widgets/notification_list.dart';
 
 class NotificationsScreen extends StatelessWidget {

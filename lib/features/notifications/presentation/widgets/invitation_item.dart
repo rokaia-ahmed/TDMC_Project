@@ -1,28 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:tdmc_project/core/network/local/cache/cache_helper.dart';
-import 'package:tdmc_project/core/utils/app_navigation.dart';
 import 'package:tdmc_project/features/notifications/data/models/invitations_model.dart';
 import '../../../../core/utils/app_colors.dart';
 import '../../../../core/utils/app_constants.dart';
 import '../../../../core/utils/app_size.dart';
 import '../../../../core/utils/styles.dart';
-import '../screens/invitation_details.dart';
 
 class InvitationItem extends StatelessWidget {
-  const InvitationItem({super.key, required this.model, required this.notificationId});
+  const InvitationItem({super.key, required this.model,
+    this.onTap,});
   final InvitationModel model ;
-  final String notificationId ;
+  final Function()? onTap ;
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {
-        AppNavigator.push(
-            screen: InvitationDetails(
-              model: model,
-              notificationId:notificationId ,
-            ),
-            context: context);
-      },
+      onTap: onTap,
       child: Container(
         padding: AppSize.padding(
           vertical: 15,

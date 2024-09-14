@@ -1,4 +1,4 @@
-part of 'notification_cubit.dart';
+import 'package:flutter/material.dart';
 
 @immutable
 sealed class NotificationState {}

@@ -1,3 +1,39 @@
+
+class AssignmentsModel {
+  String? trainerName;
+  String? trainerNameAr;
+  String? workshopDate;
+  String? workshopTitle;
+  String? workshopTitleAr;
+  String? venue;
+  String? venueAr;
+  String? company;
+  String? companyAr;
+  String? dateFrom;
+  String? toDate;
+  List<QuestionsModel>?
+  questionsList;
+
+
+  AssignmentsModel.fromJson(Map<String, dynamic> json) {
+    trainerName = json["trainerName"];
+    trainerNameAr = json["trainerNameAr"];
+    workshopDate = json["workshopDate"];
+    workshopTitle = json["workshopTitle"];
+    workshopTitleAr = json["workshopTitleAr"];
+    venue = json["venue"];
+    venueAr = json["venueAR"];
+    company = json["company"];
+    companyAr = json["companyAr"];
+    dateFrom = json["dateFrom"];
+    toDate = json["toDate"];
+    questionsList = json["workshopEvaluationQuestions"] == null ? null :
+    (json["workshopEvaluationQuestions"] as List).map((e) =>
+        QuestionsModel.fromJson(e)).toList();
+  }
+
+}
+
 class QuestionsModel {
   String? id;
   String? workshopEvaluationId;
