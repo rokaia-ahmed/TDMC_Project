@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:device_preview/device_preview.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -28,9 +30,11 @@ void main() async {
 
   /// Firebase
   await Firebase.initializeApp(
-      options: const FirebaseOptions(
+      options: FirebaseOptions(
         apiKey: 'AIzaSyBuGQLReQbS-aDx3M3qGxOg2leVCERLjM0',
-        appId: '1:44043735913:android:19e778be5a1dc5d6bce3f8',
+        appId:Platform.isAndroid?
+        '1:44043735913:android:19e778be5a1dc5d6bce3f8'
+            :"1:44043735913:ios:a3f92a3e377310eabce3f8",
         messagingSenderId: '44043735913',
         projectId: 'tdmc-5d126',
         storageBucket: 'tdmc-5d126.appspot.com',
