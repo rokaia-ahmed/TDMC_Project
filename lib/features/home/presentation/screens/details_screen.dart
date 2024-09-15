@@ -111,6 +111,7 @@ class DetailsScreen extends StatelessWidget {
                           AppNavigator.push(
                               screen: AssignmentsScreen(
                                 workshopId: model.id!,
+                                enrollmentId:model.enrollmentId! ,
                               ),
                               context: context);
                         },

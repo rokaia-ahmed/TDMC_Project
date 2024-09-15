@@ -34,6 +34,7 @@ void main() async {
         messagingSenderId: '44043735913',
         projectId: 'tdmc-5d126',
         storageBucket: 'tdmc-5d126.appspot.com',
+        iosBundleId: 'com.tdmc.emerging',
       ),
   );
 

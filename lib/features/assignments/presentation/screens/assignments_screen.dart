@@ -14,8 +14,10 @@ import '../widgets/top_widgets.dart';
 
 class AssignmentsScreen extends StatelessWidget {
   const AssignmentsScreen({super.key,
-    required this.workshopId});
+    required this.workshopId,
+    required this.enrollmentId});
   final String workshopId;
+  final String enrollmentId;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -114,9 +116,9 @@ class AssignmentsScreen extends StatelessWidget {
                                 }
                                 if(cubit.questions.length==
                                     cubit.currentPage+1 &&cubit.optionsId.isNotEmpty){
-                                  /*cubit.submitAssignment(
+                                  cubit.submitAssignment(
                                     context,
-                                    id:model.enrollmentId!,);*/
+                                    id:enrollmentId,);
                                 }
                               },
                               text: 'assignments.next'.tr()),
