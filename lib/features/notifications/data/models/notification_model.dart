@@ -1,7 +1,7 @@
 class NotificationModel {
   String? id;
-  String? userId;
   String? entityId;
+  String? enrollmentId;
   int? type;
   String? description;
   String? descriptionAr;
@@ -11,10 +11,10 @@ class NotificationModel {
 
   NotificationModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
-    userId = json['userId'];
     entityId = json['entityId'];
+    enrollmentId = json['enrollmentId'];
     type = json['type'];
-    description = json['desription'];
+    description = json['description'];
     descriptionAr = json['descriptionAr'];
     isRead = json['isRead'];
     createdOn = json['createdOn'];

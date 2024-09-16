@@ -43,7 +43,9 @@ class HomeTabsView extends StatelessWidget {
 
                (cubit.workShopsModel!.invitedWorkshops.isNotEmpty)?
                BuildListView(list:cubit.searchList.isNotEmpty?
-               cubit.searchList: cubit.workShopsModel!.invitedWorkshops,):
+               cubit.searchList: cubit.workShopsModel!.invitedWorkshops,
+               isInvite: true,
+               ):
                CustomError2(error: 'home.no_workshops'.tr()),
              ],
            ),
@@ -59,8 +61,10 @@ class HomeTabsView extends StatelessWidget {
 }
 
 class BuildListView extends StatelessWidget {
-  const BuildListView({super.key, required this.list});
+  const BuildListView({super.key, required this.list,
+     this.isInvite = false});
   final List list ;
+  final bool isInvite ;
   @override
   Widget build(BuildContext context) {
     return ListView.separated(
@@ -72,6 +76,7 @@ class BuildListView extends StatelessWidget {
             AppNavigator.push(
                 screen: DetailsScreen(
                   model:list[index],
+                  isInvite:isInvite ,
                 ),
                 context: context);
           },

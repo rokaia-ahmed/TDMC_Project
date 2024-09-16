@@ -44,7 +44,7 @@ class LayoutAppBar extends StatelessWidget {
             onTap: () {
               CacheHelper.removeData('token');
               CacheHelper.removeData('userName');
-              CacheHelper.removeData('fcm_token');
+              //CacheHelper.removeData('fcm_token');
               AppNavigator.pushAndRemove(
                   screen: SplashScreen(),
                   context: context);

@@ -1,4 +1,6 @@
 
+import 'dart:io';
+
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import '../../../../features/notifications/presentation/screens/notifications_screen.dart';
@@ -23,12 +25,17 @@ class FirebaseNotifications {
   /// GET FCM NOTIFICATION TOKEN AND SAVE IT AN CACHE
   static Future getFcmToken() async {
     /// GET AND SAVE FCM NOTIFICATION TOKEN IN CACHE
+    if(Platform.isIOS){
+      await Future.delayed(Duration(seconds: 1));
+      await messaging.getAPNSToken();
+    }
     await messaging
         .getToken()
         .then((token) async {
-      if(!CacheHelper.sharedPreferences.containsKey('fcm_token')) {
+      await CacheHelper.saveData('fcm_token', token);
+      /*if(!CacheHelper.sharedPreferences.containsKey('fcm_token')) {
         await CacheHelper.saveData('fcm_token', token);
-      }
+      }*/
       debugPrint('fcm_token $token');
     });
   }

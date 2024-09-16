@@ -15,9 +15,11 @@ import '../../data/models/workshops_model.dart';
 import '../widgets/home_list_item.dart';
 
 class DetailsScreen extends StatelessWidget {
-  const DetailsScreen({super.key, required this.model});
+  const DetailsScreen({super.key, required this.model,
+     this.isInvite = false});
 
   final Result model;
+  final bool isInvite ;
 
   @override
   Widget build(BuildContext context) {
@@ -99,6 +101,12 @@ class DetailsScreen extends StatelessWidget {
               ),
 
               /// bottom buttons
+              (isInvite==true)?
+                  Container()
+                /*DetailsActions(
+                  notificationId: '',
+                  workshopId: model.id!,)*/
+                  :
               Padding(
                 padding: AppSize.padding(horizontal: 15),
                 child: Row(
@@ -108,12 +116,14 @@ class DetailsScreen extends StatelessWidget {
                     Expanded(
                       child: CustomDefaultButton(
                         onTap: () {
-                          AppNavigator.push(
-                              screen: AssignmentsScreen(
-                                workshopId: model.id!,
-                                enrollmentId:model.enrollmentId! ,
-                              ),
-                              context: context);
+                          if(model.enrollmentId !=null){
+                            AppNavigator.push(
+                                screen: AssignmentsScreen(
+                                  workshopId: model.id!,
+                                  enrollmentId:model.enrollmentId! ,
+                                ),
+                                context: context);
+                          }
                         },
                         text: 'home.workshop_assessment'.tr(),
                         textStyle: Styles.textStyle12w600.copyWith(

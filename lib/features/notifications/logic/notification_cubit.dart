@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../core/utils/app_navigation.dart';
 import '../../../core/utils/helper/app_dialogs.dart';
+import '../../Assignments/presentation/screens/assignments_screen.dart';
 import '../../layout/presentation/screens/layout_screen.dart';
 import '../data/models/details_check_model.dart';
 import '../data/models/enrollAndRejectBody.dart';
@@ -148,9 +149,11 @@ class NotificationCubit extends Cubit<NotificationState> {
           ),
           context: context);
     } else if (notification[index].type == 4) {
-      /*AppNavigator.push(
-           screen: AssignmentsScreen(model: null,),
-           context: context);*/
+      AppNavigator.push(
+           screen: AssignmentsScreen(
+             workshopId: notification[index].entityId!,
+             enrollmentId: notification[index].enrollmentId!),
+           context: context);
     } else if (notification[index].type == 5) {
       getCheckDetails(notification[index].id!);
       if (detailsCheckModel != null) {

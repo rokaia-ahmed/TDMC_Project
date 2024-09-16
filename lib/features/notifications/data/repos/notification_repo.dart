@@ -138,9 +138,15 @@ class NotificationRepo{
       Response response =  await DioHelper.getData(
           url:'workshop/$id');
       if(response.statusCode==200){
-        var result = InvitationsDetailsModel.fromJson(
-            response.data['workshopDetails'][0]);
-        return right(result) ;
+        List list = response.data['workshopDetails'] ;
+        if(list.isNotEmpty){
+          var result = InvitationsDetailsModel.fromJson(
+              response.data['workshopDetails'][0]);
+          return right(result) ;
+        }else{
+          return left(ServerFailure('there is no workshop'));
+        }
+
       } else{
         return left(ServerFailure.fromResponse(response));
       }
